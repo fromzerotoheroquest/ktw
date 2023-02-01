@@ -1,10 +1,12 @@
-let phase1 = document.getElementById("phase1")
-let viewer = document.createElement("div");
-viewer.setAttribute('id', 'viewer')
-phase1.append(viewer)
 
 
-
+function Game (){
+    this.phase1 = document.getElementById("phase1")
+    this.viewer = document.createElement("div");
+    this.viewer.setAttribute('id', 'viewer')
+    this.phase1.append(viewer)
+}
+Game()
 function moveViewer() {
     console.log(viewer.style)
     
@@ -18,3 +20,4 @@ function moveViewer() {
 }
 
 moveViewer()
+
