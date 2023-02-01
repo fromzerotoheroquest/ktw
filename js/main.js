@@ -23,7 +23,6 @@ function randomNumber(number) {
 console.log(randomNumber(5))
 
 function createWasp(number) {
-
     let wasp = document.createElement("div");
     wasp.setAttribute('class', 'wasp')
     let waspSize = 50
@@ -45,17 +44,17 @@ function createWasp(number) {
     }
     */
    
-   for( let i = 0; i < coords.length; i++){
+/*    for( let i = 0; i < coords.length; i++){
        
        let x = randomNumber(500);
        let y = randomNumber(700);
        coords.push('demo')
-       /*           if (Math.abs(element.x - x) > 55 && Math.abs(element.y - y)>55){
-           coords.push({x:x,y:y})
-       } */
+      // if (Math.abs(element.x - x) > 55 && Math.abs(element.y - y)>55){
+       //    coords.push({x:x,y:y})
+      // }
        
     }
-
+ */
 
     wasp.style.top = randomNumber(500) + waspSize + "px"
     wasp.style.left = randomNumber(700) + waspSize + "px"
