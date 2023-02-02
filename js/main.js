@@ -42,18 +42,19 @@ const Wasp = function (waspNumber) {
         this.direction = 1,
         this.coords = {},
         this.waspNumber = waspNumber,
-        this.direction = 1,
+        this.timerId = setInterval(()=> {this.waspMove()}, 100)
+        this.wasp
         this.randomNumber = function (number) {
             return Math.floor(Math.random() * (number + 1))
         },
         this.createWasp = function () {
             this.coords.x = this.randomNumber(700);
             this.coords.y = this.randomNumber(500);
-            let wasp = document.createElement("div");
-            wasp.setAttribute('class', 'wasp')
-            playground.append(wasp)
-            wasp.style.top = this.coords.y + "px"
-            wasp.style.left = this.coords.x + "px"
+            this.wasp = document.createElement("div");
+            this.wasp.setAttribute('class', 'wasp')
+            playground.append(this.wasp)
+            this.wasp.style.top = this.coords.y + "px"
+            this.wasp.style.left = this.coords.x + "px"
 
         },
         this.waspDown = function () {
@@ -64,24 +65,23 @@ const Wasp = function (waspNumber) {
             }))
         },
         this.waspMove = function () {
-            let move = this.wasp
-            console.log(move)
-            let timerId = setInterval(function () {
-                if (this.coords.x <= 0 + 'px') {
-                    console.log('all wasps:', this.coords.x.style.left)
-                    direction = 1
-                    move += 10 * direction
-                    this.wasp.style.left = move + 'px'
-                } else if (this.coords.x >= 750 + 'px') {
-                    console.log('all wasps:', this.coords.x.style.left)
-                    direction = -1
-                    move += 10 * direction
-                    this.wasp.style.left = move + 'px'
+            //console.log(this.coords.x)
+            //console.log(this.direction)
+                if (this.wasp.style.left <= 0 + 'px') {
+                    this.direction = 1
+                    let move = 10 * this.direction
+                    this.wasp.style.left = parseInt(this.wasp.style.left) + move + 'px'
+                } else if (this.wasp.style.left >= 750 + 'px') {
+                    //console.log('all wasps:', this.coords.x.style.left)
+                    this.direction = -1
+                    let move = 10 * this.direction
+                    this.wasp.style.left = parseInt(this.wasp.style.left) + move + 'px'
                 } else {
-                    move += 10 * direction
-                    this.wasp.style.left = move + 'px'
+                    let move = 10 * this.direction
+                    //console.log( this.wasp.style.left)
+                    this.wasp.style.left = parseInt(this.wasp.style.left) + move + 'px'
                 }
-            }, 50)
+           
         }
 }
 
