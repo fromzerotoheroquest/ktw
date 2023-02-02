@@ -2,9 +2,11 @@
     position: relative;
     width: 800px;
     height: 600px;
-    border: 1px dashed grey;
+    /*border: 4px dashed green;*/
+    background-color: aqua;
     cursor:crosshair;
     overflow: hidden;
+    
 }
 
 
