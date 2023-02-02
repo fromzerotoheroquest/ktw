@@ -3,6 +3,7 @@
     width: 800px;
     height: 600px;
     border: 1px dashed grey;
+    cursor:crosshair;
     overflow: hidden;
 }
 
@@ -11,8 +12,10 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: green;
-
+    background-color: rgba(0, 128, 0, 0.459);
+    border-radius: 15px;
+    
+    
 }
 .wasp{
     position:absolute;
