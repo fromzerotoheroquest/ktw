@@ -25,22 +25,21 @@ const Game = function (maxWaspSpeed, waspQty) {
         console.log('this is wasp army:', this.waspArmy)
     this.createArmy = function () {
         while (this.waspArmy.length < this.waspQty) {
-            let tempWasp = new Wasp()
+            let tempWasp = new Wasp(this.randomNumber(this.waspSpeed))
             let valid = true;
-
+            console.log(tempWasp.coords)
             this.waspArmy.forEach(function (element) {
-                if (Math.abs(x - element.x) < 55 && Math.abs(y - element.y) < 55) {
+                if (Math.abs(tempWasp.coords.x - element.x) < 55 && Math.abs(tempWasp.coords.y - element.y) < 55) {
                     valid = false
                 }
             })
-            if (valid) this.waspArmy.push({ x: x, y: y })
+            if (valid) this.waspArmy.push(tempWasp)
             console.log(valid)
         }
-
     },
         this.init = function () {
             this.createViewer()
-           // this.createArmy()
+            this.createArmy()
         },
         this.init()
 }
@@ -103,12 +102,7 @@ const Wasp = function (speed) {
         this.live()
 }
 
-let demo = new Game(5, 5)
+let demo = new Game(5,5)
 
-demo.addWasp()
-demo.addWasp()
-demo.addWasp()
-demo.addWasp()
-demo.addWasp()
 
 
