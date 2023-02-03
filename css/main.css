@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
 }
 
@@ -6,20 +6,17 @@ body{
     cursor: crosshair;
 }
 
-#playground{
-    /* margin: 50px auto; */
+#playground {
     position: relative;
     width: 800px;
     height: 600px;
     overflow: hidden;
-    
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../assets/forestBg.jpg");
+    background-image: url("../assets/images/forestBg.jpg");
     background-position-x: center;
     background-position-y: center;
 }
-
 
 #viewer {
     display: block;
@@ -28,18 +25,15 @@ body{
     height: 36px;
     background-color: rgba(0, 128, 0, 0.459);
     border-radius: 18px;
-
-
 }
 
 .wasp {
     position: absolute;
     width: 50px;
     height: 50px;
-    /*background-color: rgb(56, 255, 242);*/
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("../assets/wasp.gif");
+    background-image: url("../assets/images/wasp.gif");
     background-size: 200%;
     background-position-x: center;
     background-position-y: center;
@@ -51,7 +45,7 @@ body{
     height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("../assets/bee.gif");
+    background-image: url("../assets/images/bee.gif");
     background-size: 80%;
     background-position-x: center;
     background-position-y: center;
