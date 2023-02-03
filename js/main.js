@@ -1,7 +1,11 @@
-const Game = function (maxWaspSpeed = 5, waspQty = 5) {
-    this.waspSpeed = maxWaspSpeed
+const Game = function (waspSpeed = 8,beeSpeed = 1, waspQty = 5, beeQty = 3) {
+    //this.animalSpeed = animalSpeed
+    this.waspSpeed = waspSpeed
+    this.beeSpeed = beeSpeed
     this.waspQty = waspQty
+    this.beeQty = beeQty
     this.waspHive = []
+    this.beeHive = []
     this.createViewer = function () {
         let playground = document.getElementById("playground")
         let viewer = document.createElement("div");
@@ -19,13 +23,10 @@ const Game = function (maxWaspSpeed = 5, waspQty = 5) {
     this.randomNumber = function (number) {
         return Math.floor(Math.random() * (number + 1))
     }
-    this.addWasp = function () {
-        this.waspHive.push(new Wasp(this.randomNumber(this.waspSpeed)))
-    }
     console.log('this is wasp army:', this.waspHive)
-    this.createHive = function () {
+    this.createWaspHive = function () {
         while (this.waspHive.length < this.waspQty) {
-            let tempWasp = new Wasp(this.randomNumber(this.waspSpeed)+ 0.5)
+            let tempWasp = new Wasp(undefined, this.randomNumber(this.waspSpeed) + 0.5)
             let valid = true;
             //console.log(tempWasp.coords)
             this.waspHive.forEach(function (element) {
@@ -37,15 +38,30 @@ const Game = function (maxWaspSpeed = 5, waspQty = 5) {
             //console.log(valid)
         }
     }
+    this.createBeeHive = function () {
+        while (this.beeHive.length < this.beeQty) {
+            let tempBee = new Bee(undefined, this.randomNumber(this.beeSpeed) + 0.5)
+            let valid = true;
+            this.beeHive.forEach(function (element) {
+            //console.log(tempBee.coords)
+                if ((Math.abs(tempBee.coords.x - element.x) < 55) && (Math.abs(tempBee.coords.y - element.y) < 55)) {
+                    valid = false
+                }
+            })
+            if (valid) this.beeHive.push(tempBee)
+            //console.log(valid)
+        }
+    }
     this.init = function () {
         this.createViewer()
-        this.createHive()
+        this.createWaspHive()
+        this.createBeeHive()
     }
     this.init()
 }
 
-const Wasp = function (speed) {
-    let self = this
+const Animal = function (type, speed) {
+    this.type = type 
     this.directionX = 1
     this.directionY = 1
     this.speed = speed
@@ -58,21 +74,21 @@ const Wasp = function (speed) {
     this.create = function () {
         this.coords.x = this.randomNumber(700);
         this.coords.y = this.randomNumber(500);
-        this.wasp = document.createElement("div");
-        this.wasp.setAttribute('class', 'wasp')
-        playground.append(this.wasp)
-        this.wasp.style.top = this.coords.y + "px"
-        this.wasp.style.left = this.coords.x + "px"
+        this.animal = document.createElement("div");
+        this.animal.setAttribute('class', type)
+        playground.append(this.animal)
+        this.animal.style.top = this.coords.y + "px"
+        this.animal.style.left = this.coords.x + "px"
     }
     this.die = function () {
-        let allWasps = document.querySelectorAll(".wasp")
-        allWasps.forEach(wasp => wasp.addEventListener('click', function (e) {
+        let allAnimals = document.querySelectorAll(`.${this.type}`)
+        allAnimals.forEach(animal => animal.addEventListener('click', function (e) {
             //e.target.remove()
-            let posX = parseInt(wasp.style.left.slice(0, -2))
-            let posY = parseInt(wasp.style.top.slice(0, -2))
+            let posX = parseInt(animal.style.left.slice(0, -2))
+            let posY = parseInt(animal.style.top.slice(0, -2))
             if ((posX < e.clientX && e.clientX < posX + 50) &&
                 (posY < e.clientY && e.clientY < posY + 50)) {
-                wasp.remove()
+                animal.remove()
                 console.log('dead')
             }
         }))
@@ -82,13 +98,13 @@ const Wasp = function (speed) {
             this.directionX *= -1
         }
         this.coords.x += this.speed * this.directionX
-        this.wasp.style.left = this.coords.x + 'px'
+        this.animal.style.left = this.coords.x + 'px'
 
         if (this.coords.y <= 0 || this.coords.y >= 550) {
             this.directionY *= -1
         }
         this.coords.y += this.speed * this.directionY
-        this.wasp.style.top = this.coords.y + 'px'
+        this.animal.style.top = this.coords.y + 'px'
     }
     this.live = function () {
         this.create()
@@ -98,7 +114,27 @@ const Wasp = function (speed) {
     this.live()
 }
 
+function Wasp(type  = "wasp", speed) {
+    Animal.call(this, type, speed)
+}
+Wasp.prototype = Object.create(Animal.prototype)
+Wasp.prototype.constructor = Wasp
+
+
+function Bee(type = "bee", speed) {
+    Animal.call(this, type, speed)
+}
+
+
+
+Bee.prototype = Object.create(Animal.prototype)
+Bee.prototype.constructor = Bee
+
+
+
 let demo = new Game(undefined, 5)
+
+
 
 
 
