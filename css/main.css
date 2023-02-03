@@ -1,27 +1,45 @@
+body{
+    margin: 0;
+}
+
 #container {
+    cursor: crosshair;
+}
+
+#playground{
+    /* margin: 50px auto; */
     position: relative;
     width: 800px;
     height: 600px;
-    /*border: 4px dashed green;*/
-    background-color: aqua;
-    cursor:crosshair;
     overflow: hidden;
     
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../assets/forestBg.jpg");
+    background-position-x: center;
+    background-position-y: center;
 }
 
 
 #viewer {
+    display: block;
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     background-color: rgba(0, 128, 0, 0.459);
-    border-radius: 15px;
-    
-    
+    border-radius: 18px;
+
+
 }
-.wasp{
-    position:absolute;
+
+.wasp {
+    position: absolute;
     width: 50px;
     height: 50px;
-    background-color: red;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../assets/wasp.gif");
+    background-size: 200%;
+    background-position-x: center;
+    background-position-y: center;
 }
