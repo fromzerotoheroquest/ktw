@@ -1,5 +1,7 @@
-const Game = function (waspNumber) {
-    this.waspArmy = [],
+const Game = function (maxWaspSpeed, waspQty) {
+    this.waspSpeed = maxWaspSpeed,
+        this.waspQty = waspQty,
+        this.waspArmy = [],
         this.createViewer = function () {
             let playground = document.getElementById("playground")
             let viewer = document.createElement("div");
@@ -14,28 +16,33 @@ const Game = function (waspNumber) {
                 //console.log(cursorX, cursorY)
             });
         },
-        this.createWaspArmy = function () {
-            while (this.waspArmy.length < this.waspNumber) {
-                let x = this.randomNumber(700);
-                let y = this.randomNumber(500);
-                let valid = true;
-                this.waspArmy.forEach(function (element) {
-                    if (Math.abs(x - element.x) < 55 && Math.abs(y - element.y) < 55) {
-                        valid = false
-                    }
-                })
-                if (valid) this.waspArmy.push({ x: x, y: y })
-                console.log(valid)
-            }
-            for (let i = 0; i < this.waspNumber; i++) {
-                let wasp = document.createElement("div");
-                wasp.setAttribute('class', 'wasp')
-                playground.append(wasp)
-                wasp.style.top = this.waspArmy[i].y + "px"
-                wasp.style.left = this.waspArmy[i].x + "px"
-            }
-            console.log('this is wasp army:', this.waspArmy)
+        this.randomNumber = function (number) {
+            return Math.floor(Math.random() * (number + 1))
+        },
+        this.addWasp = function () {
+            this.waspArmy.push(new Wasp(this.randomNumber(this.waspSpeed)))
+        },
+        console.log('this is wasp army:', this.waspArmy)
+    this.createArmy = function () {
+        while (this.waspArmy.length < this.waspQty) {
+            let tempWasp = new Wasp()
+            let valid = true;
+
+            this.waspArmy.forEach(function (element) {
+                if (Math.abs(x - element.x) < 55 && Math.abs(y - element.y) < 55) {
+                    valid = false
+                }
+            })
+            if (valid) this.waspArmy.push({ x: x, y: y })
+            console.log(valid)
         }
+
+    },
+        this.init = function () {
+            this.createViewer()
+           // this.createArmy()
+        },
+        this.init()
 }
 
 const Wasp = function (speed) {
@@ -62,16 +69,16 @@ const Wasp = function (speed) {
             allWasps.forEach(wasp => wasp.addEventListener('click', function (e) {
                 //e.target.remove()
                 console.log(e)
-                let posX = parseInt(wasp.style.left.slice(0,-2))
-                let posY = parseInt(wasp.style.top.slice(0,-2))
+                let posX = parseInt(wasp.style.left.slice(0, -2))
+                let posY = parseInt(wasp.style.top.slice(0, -2))
                 console.log(posX)
                 console.log(e.clientX)
                 //Collision detection
-                if ( posX < e.clientX && e.clientX < posX + 50){
-                 if (posY < e.clientY && e.clientY < posY + 50){
-                     wasp.remove()
-                    console.log('dead!')
-                 }
+                if (posX < e.clientX && e.clientX < posX + 50) {
+                    if (posY < e.clientY && e.clientY < posY + 50) {
+                        wasp.remove()
+                        console.log('dead!')
+                    }
                 }
             }))
         },
@@ -96,10 +103,12 @@ const Wasp = function (speed) {
         this.live()
 }
 
-let demo = new Game()
-demo.createViewer()
-let wasp1 = new Wasp(1)
-let wasp2 = new Wasp(2)
-let wasp3 = new Wasp(3)
-let wasp4 = new Wasp(4)
-let wasp5 = new Wasp(5)
+let demo = new Game(5, 5)
+
+demo.addWasp()
+demo.addWasp()
+demo.addWasp()
+demo.addWasp()
+demo.addWasp()
+
+
