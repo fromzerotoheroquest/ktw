@@ -25,7 +25,7 @@ const Game = function (maxWaspSpeed = 5, waspQty = 5) {
     console.log('this is wasp army:', this.waspHive)
     this.createHive = function () {
         while (this.waspHive.length < this.waspQty) {
-            let tempWasp = new Wasp(this.randomNumber(this.waspSpeed))
+            let tempWasp = new Wasp(this.randomNumber(this.waspSpeed)+ 0.5)
             let valid = true;
             //console.log(tempWasp.coords)
             this.waspHive.forEach(function (element) {
