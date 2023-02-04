@@ -1,5 +1,5 @@
-const Sound = function (id) {
-  this.element = document.getElementById(id)
+const Sound = function (audioID) {
+  this.element = document.getElementById(audioID)
   this.url = this.element.getAttribute('src')
   this.sound = new Audio(this.url)
 
@@ -18,37 +18,71 @@ const Sound = function (id) {
       this.play();
     }, false);
   }
-
 }
 
+// Sound creation
 let deadWasp = new Sound("deadWasp")
 let deadBee = new Sound("deadBee")
 let buzzing = new Sound("buzzing")
 let music = new Sound("music")
+let wizz = new Sound("wizz")
 
-let musicBtn = document.getElementById('music-btn')
-
-// Music button toggle
+// Sound global variables
+let sfxStatus = false
 let natureSound = false
 
-musicBtn.addEventListener('click', function () {
-  if (natureSound === false) {
-    music.playEffect()
-    buzzing.playLoop()
+// SFx button toggle
+let sfxBtn = document.getElementById('sfx-btn')
 
-    natureSound = true
-    musicBtn.innerText = 'music is on'
+sfxBtn.addEventListener('click', function () {
+  soundOnClick(sfxStatus)
+  if (sfxStatus === false) {
+    sfxStatus = true
+    buzzing.playLoop()
+    sfxBtn.innerText = 'sound effects ON'
   } else {
-    music.stopEffect()
+    sfxStatus = false
+    sfxBtn.innerText = 'sound effects OFF'
     buzzing.stopEffect()
-    natureSound = false
-    musicBtn.innerText = 'music is off'
   }
-  console.log('start button just pressed')
 })
 
-/*
-setTimeout(() =>{
-  musicBtn.click();
-},1000)
-*/
+// Music button toggle
+let musicBtn = document.getElementById('music-btn')
+
+musicBtn.addEventListener('click', function () {
+  soundOnClick(sfxStatus)
+  if (natureSound === false) {
+    music.playEffect()
+    natureSound = true
+    musicBtn.innerText = 'musin ON'
+  } else {
+    music.stopEffect()
+    natureSound = false
+    musicBtn.innerText = 'music OFF'
+  }
+})
+
+// Sound of animal when dying
+function lastBreath(el) {
+  if (sfxStatus) {
+    if (el.getAttribute('class') === 'wasp') {
+      deadWasp.stopEffect()
+      deadBee.stopEffect()
+      deadWasp.playEffect()
+    } else {
+      deadWasp.stopEffect()
+      deadBee.stopEffect()
+      deadBee.playEffect()
+    }
+  }
+}
+
+// Sound when clicking on buttons 
+
+function soundOnClick(sfxStatus) {
+  if (sfxStatus) {
+    wizz.stopEffect()
+    wizz.playEffect()
+  }
+}
