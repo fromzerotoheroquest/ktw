@@ -17,9 +17,17 @@
 
 <body>
     <div id="container">
-        <div id="start"></div>
+        <div id="start">
+                <img src="/assets/images/wasp1.webp" alt="logo-kill-the-wasp">
+            <div id="game-start">
+                <button id="button-start">START</button>
+            </div>
+        </div>
         <div id="playground"></div>
-        <div id="final">Game OVer</div>
+        <div id="final">
+            <img id='game-over' src="/assets/images/game-over.webp" alt="logo-game-over">
+            <button id="try-again">TRY AGAIN</button>
+        </div>
         <div id="control-panel">
             <div> <button id="music-btn">music OFF</button>
             </div>
@@ -28,7 +36,7 @@
             <div><span>Dead bees:</span><span id="killed-bees">0</span></div>
             <div><span>Dead wasps:</span><span id="killed-wasps">0</span></div>
             <div id="timer">
-                <span id="seconds">0</span>
+                <span id="seconds">10</span>
                 <span> secs</span> 
             </div>
         </div>

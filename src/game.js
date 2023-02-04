@@ -1,7 +1,7 @@
 
-const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, time = 10) {
+const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim = 10) {
     let self = this
-    this.time = time
+    //this.time = time
     this.waspSpeed = waspSpeed
     this.beeSpeed = beeSpeed
     this.waspQty = waspQty
@@ -77,6 +77,12 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
+                    if(self.beeDownCount === 3){
+                        let playground = document.getElementById('playground')
+                        let gameOver = document.getElementById('final')
+                        playground.style.display = 'none'
+                        gameOver.style.display = 'block'
+                    }
                 }
             })
             self.waspHive.forEach(function (wasp, idx) {
@@ -90,14 +96,16 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             })
         })
     }
-        this.timer = function(){  
+    /*this.timer = function(){  
         let gameTime = this.time   
         let timerId1 = setInterval(function(){
             if(gameTime < 0) {
                 clearInterval(timerId1)
                 let playground = document.getElementById("playground")
+                let start = document.getElementById('start')
                 let final = document.getElementById("final")
                 playground.style.display = "none"
+                start.style.display = 'none'
                 final.style.display = "block"
             } else {
                 console.log(gameTime)
@@ -105,6 +113,48 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                 gameTime--
             }
         }, 1000)
+    }*/
+
+    this.start = function() {
+         function time(){  
+            let gameTime = tim  
+            let timerId1 = setInterval(function(){
+                if(gameTime < 0) {
+                    clearInterval(timerId1)
+                    let playground = document.getElementById("playground")
+                    let start = document.getElementById('start')
+                    let final = document.getElementById("final")
+                    playground.style.display = "none"
+                    start.style.display = 'none'
+                    final.style.display = "block"
+                } else {
+                    console.log(gameTime)
+                    document.getElementById("seconds").innerText = gameTime
+                    gameTime--
+                }
+            }, 1000)
+        }
+        let startScreen = document.getElementById('start')
+        let startGame = document.getElementById("button-start")
+        let playground = document.getElementById("playground")
+        let timer = document.getElementById("timer")
+        startGame.addEventListener('click', function(){
+            startScreen.style.display = "none"
+            playground.style.display = "block"
+            timer.style.display = "block"
+            time()
+        })
+    }
+    this.tryAgain = function() {
+        let finalScreen = document.getElementById('final')
+        let tryAgain = document.getElementById("try-again")
+        let start = document.getElementById("start")
+        let timer = document.getElementById("timer")
+        tryAgain.addEventListener('click', function(){
+            finalScreen.style.display = "none"
+            timer.style.display = "none"
+            start.style.display = "flex"
+        })
     }
 
     this.init = function () {
@@ -114,8 +164,8 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         this.kill()
         this.beeHiveUpdate()
         this.waspHiveUpdate()
-        this.timer()
-
+        this.start()
+        this.tryAgain()
     }
     this.init()
 }
