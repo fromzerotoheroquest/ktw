@@ -1,11 +1,21 @@
 body {
     margin: 0;
 }
-
+#final {
+    display: none;
+}
 #container {
     width: 800px;
 }
-
+#timer {
+    position: absolute;
+    color: aliceblue;
+}
+span {
+    background-color: beige;
+    color: blue;
+    
+}
 #playground {
     cursor: crosshair;
     position: relative;

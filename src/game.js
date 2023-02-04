@@ -1,5 +1,7 @@
-const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3) {
+
+const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, time = 10) {
     let self = this
+    this.time = time
     this.waspSpeed = waspSpeed
     this.beeSpeed = beeSpeed
     this.waspQty = waspQty
@@ -88,6 +90,22 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3) {
             })
         })
     }
+        this.timer = function(){  
+        let gameTime = this.time   
+        let timerId1 = setInterval(function(){
+            if(gameTime < 0) {
+                clearInterval(timerId1)
+                let playground = document.getElementById("playground")
+                let final = document.getElementById("final")
+                playground.style.display = "none"
+                final.style.display = "block"
+            } else {
+                console.log(gameTime)
+                document.getElementById("seconds").innerText = gameTime
+                gameTime--
+            }
+        }, 1000)
+    }
 
     this.init = function () {
         this.createViewer()
@@ -96,6 +114,8 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3) {
         this.kill()
         this.beeHiveUpdate()
         this.waspHiveUpdate()
+        this.timer()
+
     }
     this.init()
 }
