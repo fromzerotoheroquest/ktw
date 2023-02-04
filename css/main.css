@@ -7,15 +7,7 @@ body {
 #container {
     width: 800px;
 }
-#timer {
-    position: absolute;
-    color: aliceblue;
-}
-span {
-    background-color: beige;
-    color: blue;
-    
-}
+
 #playground {
     cursor: crosshair;
     position: relative;
@@ -78,7 +70,7 @@ span {
     cursor: pointer;
 }
 
-#killed-wasps, #killed-bees {
+#killed-wasps, #killed-bees, #seconds {
     font-size: 26px;
     padding-left: 5px;
 }
