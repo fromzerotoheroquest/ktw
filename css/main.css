@@ -30,6 +30,7 @@ img {
 }
 
 #final {
+    display: flex;
     display: none;
 }
 #container {

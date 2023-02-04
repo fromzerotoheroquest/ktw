@@ -2,6 +2,7 @@
 const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim = 10) {
     let self = this
     //this.time = time
+    let timerId1
     this.waspSpeed = waspSpeed
     this.beeSpeed = beeSpeed
     this.waspQty = waspQty
@@ -77,7 +78,9 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
+                    // Aqui digo que cuando matemos 3 abejas nos mande a la pantalla de game over
                     if(self.beeDownCount === 3){
+                        clearInterval(timerId1)
                         let playground = document.getElementById('playground')
                         let gameOver = document.getElementById('final')
                         playground.style.display = 'none'
@@ -114,11 +117,11 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             }
         }, 1000)
     }*/
-
+    // Añadí la funcion timer dentro del start game para ponerla como condicion cuando le damos al boton Start
     this.start = function() {
          function time(){  
             let gameTime = tim  
-            let timerId1 = setInterval(function(){
+                timerId1 = setInterval(function(){
                 if(gameTime < 0) {
                     clearInterval(timerId1)
                     let playground = document.getElementById("playground")
@@ -145,6 +148,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             time()
         })
     }
+    // Aqui implemento la funcion para intentar otra vez la partida, aunque hay que reiniciar los valores obtenidos en la puntuacion y tiempo
     this.tryAgain = function() {
         let finalScreen = document.getElementById('final')
         let tryAgain = document.getElementById("try-again")
@@ -154,6 +158,13 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             finalScreen.style.display = "none"
             timer.style.display = "none"
             start.style.display = "flex"
+            // Aqui actualizo el contador de abejas y avispas
+            self.beeDownCount = 0
+            self.waspDownCount = 0
+            let beeCounter = document.getElementById('killed-bees')
+            beeCounter.innerText = self.beeDownCount
+            let waspCounter = document.getElementById('killed-wasps')
+            waspCounter.innerText = self.waspDownCount
         })
     }
 
