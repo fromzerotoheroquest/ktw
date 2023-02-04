@@ -81,10 +81,13 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                     // Aqui digo que cuando matemos 3 abejas nos mande a la pantalla de game over
                     if(self.beeDownCount === 3){
                         clearInterval(timerId1)
+                        
                         let playground = document.getElementById('playground')
                         let gameOver = document.getElementById('final')
                         playground.style.display = 'none'
                         gameOver.style.display = 'block'
+                        let seconds = document.getElementById('seconds')
+                        seconds.innerText = 10
                     }
                 }
             })
@@ -117,7 +120,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             }
         }, 1000)
     }*/
-    // Añadí la funcion timer dentro del start game para ponerla como condicion cuando le damos al boton Start
+    // Añadí la funcion timer dentro del start game para ponerla como condicion cuando le damos al boton Start y que hasi se inicie la cuenta atrás
     this.start = function() {
          function time(){  
             let gameTime = tim  

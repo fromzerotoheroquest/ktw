@@ -30,8 +30,12 @@ img {
 }
 
 #final {
-    display: flex;
+    width: 800px;
+    height: 600px;
     display: none;
+    text-align: center;
+    padding-top: auto;
+    background-color: black;
 }
 #container {
     width: 800px;
@@ -113,6 +117,6 @@ img {
 
 #game-over {
     width: 800px;
-    height: 600px;
+    height: 400px;
     padding-bottom: 0;
 }
