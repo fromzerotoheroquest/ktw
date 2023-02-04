@@ -3,10 +3,11 @@ body {
 }
 
 #container {
-    cursor: crosshair;
+    width: 800px;
 }
 
 #playground {
+    cursor: crosshair;
     position: relative;
     width: 800px;
     height: 600px;
@@ -49,4 +50,25 @@ body {
     background-size: 80%;
     background-position-x: center;
     background-position-y: center;
+}
+
+#control-panel {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #190e05;
+    color: #fff;
+}
+
+#control-panel button{
+    border-radius: 10px;
+    padding: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+#killed-wasps, #killed-bees {
+    font-size: 26px;
+    padding-left: 5px;
 }

@@ -18,6 +18,7 @@ const Animal = function (type, speed) {
         this.animal.style.top = this.coords.y + "px"
         this.animal.style.left = this.coords.x + "px"
     }
+    
     this.die = function () {
         let allAnimals = document.querySelectorAll(`.${this.type}`)
         allAnimals.forEach(animal => animal.addEventListener('click', function (e) {
@@ -31,6 +32,7 @@ const Animal = function (type, speed) {
             }
         }))
     }
+    
     this.move = function () {
         if (this.coords.x <= 0 || this.coords.x >= 750) {
             this.directionX *= -1
