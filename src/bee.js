@@ -3,3 +3,7 @@ function Bee(type = "bee", speed) {
 }
 Bee.prototype = Object.create(Animal.prototype)
 Bee.prototype.constructor = Bee
+
+Bee.prototype.die = function() {
+}
+

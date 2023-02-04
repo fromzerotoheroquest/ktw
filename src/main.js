@@ -1,7 +1,7 @@
 
 
 
-let demo = new Game(undefined, 5)
+let demo = new Game(undefined, undefined, 10, 10)
 
 
 

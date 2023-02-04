@@ -27,7 +27,16 @@ const Animal = function (type, speed) {
             if ((posX < e.clientX && e.clientX < posX + 50) &&
                 (posY < e.clientY && e.clientY < posY + 50)) {
                 animal.remove()
-                console.log('dead')
+                if(e.target.getAttribute('class') === 'wasp') {
+                    deadWasp.stopEffect()
+                    deadBee.stopEffect()
+                    deadWasp.playEffect()
+                } else {
+                    deadWasp.stopEffect()
+                    deadBee.stopEffect()
+                    deadBee.playEffect()
+                }
+
             }
         }))
     }

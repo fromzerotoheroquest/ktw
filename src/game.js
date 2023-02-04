@@ -23,7 +23,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3) {
     this.randomNumber = function (number) {
         return Math.floor(Math.random() * (number + 1))
     }
-    console.log('this is wasp army:', this.waspHive)
+    //console.log('this is wasp army:', this.waspHive)
     this.createWaspHive = function () {
         while (this.waspHive.length < this.waspQty) {
             let tempWasp = new Wasp(undefined, this.randomNumber(this.waspSpeed) + 0.5)
