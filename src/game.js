@@ -102,6 +102,9 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                 playground.style.display = "none"
                 final.style.display = "block"
                 self.saveLastFiveGameScore()
+                self.showCurrentScore()
+        self.showHistory()
+
             } else {
                 console.log(gameTime)
                 document.getElementById("seconds").innerText = gameTime
@@ -152,6 +155,11 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         history.remove()
     }
 
+    this.showCurrentScore = function () {
+        let currentScore = document.getElementById('current-score')
+        currentScore.innerText = this.waspDownCount
+    }
+
     this.init = function () {
         this.createViewer()
         this.createWaspHive()
@@ -161,7 +169,6 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         this.waspHiveUpdate()
         this.timer()
         this.loadLastGameScore()
-        this.showHistory()
 
     }
     this.init()
