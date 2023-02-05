@@ -9,6 +9,7 @@ body {
 }
 
 #playground {
+    display: none;
     cursor: crosshair;
     position: relative;
     width: 800px;
@@ -82,5 +83,9 @@ body {
 }
 
 #playground {
-    display: none;
+}
+
+.layout {
+    width: 800px;
+    height: 600px;
 }

@@ -117,7 +117,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     }
 
     this.saveLastFiveGameScore = function () {
-       // this.playerName =  document.getElementById('result-player-name')
+        // this.playerName =  document.getElementById('result-player-name')
         if (this.scores.length < 5) {
             this.scores.push(this.waspDownCount)
             console.log('scores', this.scores)
@@ -139,24 +139,29 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     }
 
     this.showHistory = function () {
-        let history = document.getElementById('history')
-        let ul = document.createElement('ul')
-        ul.setAttribute('id', 'marks')
-        history.append(ul)
-
+        let marks = document.getElementById('marks')
+        let list = document.querySelectorAll('#marks li')
+        console.log(list)
+        //delete the previous list
+        list.forEach(el => el.remove())
+        //order scores
         this.scores.sort((a, b) => b - a)
-        this.scores.forEach(function (el) {
+        //create new list with sorted scores
+        this.scores.forEach(function (el, idx) {
             let li = document.createElement('li')
             li.setAttribute('class', 'mark')
-            ul.append(li)
+            marks.append(li)
             li.innerText = `${el} points`
         })
+
+
     }
+
 
     this.deleteHistory = function () {
         localStorage.removeItem('myScore')
-        let history = document.getElementById('history')
-        history.remove()
+        let list = document.querySelectorAll('#marks li')
+        list.forEach(el => el.remove())
     }
 
     this.showCurrentScore = function () {
@@ -166,7 +171,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
 
     this.savePlayerName = function () {
         this.playerName = document.getElementById('insert-player-name').value
-        let resultPlayerName =  document.getElementById('result-player-name')
+        let resultPlayerName = document.getElementById('result-player-name')
         console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
     }
