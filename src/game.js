@@ -141,7 +141,6 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     this.showHistory = function () {
         let marks = document.getElementById('marks')
         let list = document.querySelectorAll('#marks li')
-        console.log(list)
         //delete the previous list
         list.forEach(el => el.remove())
         //order scores
@@ -153,10 +152,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
             marks.append(li)
             li.innerText = `${el} points`
         })
-
-
     }
-
 
     this.deleteHistory = function () {
         localStorage.removeItem('myScore')
