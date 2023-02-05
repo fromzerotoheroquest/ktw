@@ -81,7 +81,6 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                     // Aqui digo que cuando matemos 3 abejas nos mande a la pantalla de game over
                     if(self.beeDownCount === 3){
                         clearInterval(timerId1)
-                        
                         let playground = document.getElementById('playground')
                         let gameOver = document.getElementById('final')
                         playground.style.display = 'none'
@@ -140,6 +139,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                 }
             }, 1000)
         }
+        // Aquí le damos funcionalidad al start buttton
         let startScreen = document.getElementById('start')
         let startGame = document.getElementById("button-start")
         let playground = document.getElementById("playground")
