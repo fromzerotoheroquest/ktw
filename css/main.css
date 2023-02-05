@@ -95,3 +95,13 @@ body {
     width: 800px;
     height: 600px;
 }
+
+#seconds {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: rgba(255, 0, 0, 0.425);
+    font-size: 100px;
+    z-index: 0;
+    padding: 0 25px 25px 0;
+}

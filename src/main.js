@@ -1,4 +1,4 @@
-let demo = new Game(undefined, undefined, 3, 3, 1)
+let demo = new Game(undefined, undefined, 10, 100, 30)
 
 
 // Interface

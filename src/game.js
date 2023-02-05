@@ -1,5 +1,5 @@
 
-const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, time = 30) {
+const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, time = 30) {
     let self = this
     this.time = time
     this.waspSpeed = waspSpeed
@@ -63,6 +63,9 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         console.log('Bees killed: ', this.beeDownCount)
         let beeCounter = document.getElementById('killed-bees')
         beeCounter.innerText = this.beeDownCount
+        // if(this.beeDownCount === 3){
+
+        // }
     }
     this.waspHiveUpdate = function () {
         console.log('wasps killed: ', this.waspDownCount)
