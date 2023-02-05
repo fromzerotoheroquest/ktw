@@ -1,14 +1,17 @@
 body {
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #final {
     display: none;
 }
 
+
 #container {
     width: 800px;
 }
+
 
 #playground {
     display: none;
@@ -89,11 +92,10 @@ body {
     width: 30px;
 }
 
-#playground {}
-
 .layout {
     width: 800px;
     height: 600px;
+    background-color: #ffec64;
 }
 
 #seconds {
@@ -105,3 +107,94 @@ body {
     z-index: 0;
     padding: 0 25px 25px 0;
 }
+
+#start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    background-image: url("/assets/images/front-page.jpg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+}
+
+#logo {
+    width: 250px;
+    margin: 0 auto;
+}
+
+#start-btn-game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#start-btn, #replay-btn {
+    margin: 25px;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:25px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+
+}
+#start-btn:hover, #replay-btn:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+
+#start-btn:active, #replay-btn:active {
+	position:relative;
+	top:1px;
+}
+
+input {
+    border-radius: 100px 100px 100px; 
+    border: 2px solid #000000;
+    text-align: center;
+    padding: 15px;
+    font-size: 25px;
+}
+
+#final-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-top: 100px;
+    flex-wrap: wrap;
+}
+
+#last-games {
+    margin-top: 15px;
+}
+
+#marks {
+    padding: 25px;
+    padding-left: 30px;
+}
+#last-games span {
+    padding-left: 30px;
+}
+
+#delete-history-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+

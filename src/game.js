@@ -13,6 +13,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.scores = []
     this.savedGame = localStorage.getItem('myScore')
     this.playerName
+    let timerId1 
     this.createViewer = function () {
         let playground = document.getElementById("playground")
         let viewer = document.createElement("div");
@@ -83,6 +84,15 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
+                    if(self.beeDownCount === 3){
+                        clearInterval(timerId1)
+                        let playground = document.getElementById('playground')
+                        let gameOver = document.getElementById('final')
+                        playground.style.display = 'none'
+                        gameOver.style.display = 'block'
+                        let seconds = document.getElementById('seconds')
+                        seconds.innerText = 10
+                    }
                 }
             })
             self.waspHive.forEach(function (wasp, idx) {
@@ -98,7 +108,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
     this.timer = function () {
         let gameTime = this.time
-        let timerId1 = setInterval(function () {
+        timerId1 = setInterval(function () {
             if (gameTime < 0) {
                 clearInterval(timerId1)
                 let playground = document.getElementById("playground")
@@ -174,6 +184,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.savePlayerName = function () {
         this.playerName = document.getElementById('insert-player-name').value
+        if(this.playerName === "") {this.playerName = "Player"}
         let resultPlayerName = document.getElementById('result-player-name')
         console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
@@ -184,7 +195,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         this.beeDownCount = 0
         this.beeHiveUpdate()
         this.waspHiveUpdate()
-
     }
 
     this.init = function () {

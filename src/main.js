@@ -1,4 +1,4 @@
-let demo = new Game(undefined, undefined, 10, 100, 30)
+let demo = new Game(undefined, undefined, 10, 100, 10)
 
 
 // Interface
@@ -28,7 +28,7 @@ startBtn.addEventListener('click', function(){
 })
 
 replayBtn.addEventListener('click', function(){
-  beginningLayout.style.display = 'block'
+  beginningLayout.style.display = 'flex'
   playgroundLayout.style.display = 'none'
   finalLayout.style.display = 'none'
   demo.resetKilledAnimals()
