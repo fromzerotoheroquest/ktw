@@ -3,11 +3,37 @@ let demo = new Game(undefined, undefined, 10, 10, 5)
 
 // Interface
 
-let deleteScore = document.getElementById('delete-history')
+//Buttons
+let startBtn = document.getElementById('start-btn')
+let replayBtn = document.getElementById('replay-btn')
+let deleteScoreBtn = document.getElementById('delete-history')
 
-deleteScore.addEventListener('click', function(){
+// Layouts
+let beginningLayout = document.getElementById('start')
+let playgroundLayout = document.getElementById('playground')
+let finalLayout = document.getElementById('final')
+let controlPanel = document.getElementById('control-panel')
+
+
+deleteScoreBtn.addEventListener('click', function(){
 
   demo.deleteHistory()
   console.log(demo.scores)
+})
+
+
+startBtn.addEventListener('click', function(){
+  demo.init()
+  beginningLayout.style.display = 'none'
+  //controlPanel.style.display = 'block'
+  playgroundLayout.style.display = 'block'
+  finalLayout.style.display = 'none'
+})
+
+replayBtn.addEventListener('click', function(){
+  beginningLayout.style.display = 'block'
+  playgroundLayout.style.display = 'none'
+  finalLayout.style.display = 'none'
+  demo.resetKilledAnimals()
 })
 

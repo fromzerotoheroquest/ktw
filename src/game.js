@@ -12,6 +12,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     this.waspDownCount = 0
     this.scores = []
     this.savedGame = localStorage.getItem('myScore')
+    this.playerName
     this.createViewer = function () {
         let playground = document.getElementById("playground")
         let viewer = document.createElement("div");
@@ -99,11 +100,13 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                 clearInterval(timerId1)
                 let playground = document.getElementById("playground")
                 let final = document.getElementById("final")
+                // let controlPanel = document.getElementById("control-panel")
+                // controlPanel.style.display = "none"
                 playground.style.display = "none"
                 final.style.display = "block"
                 self.saveLastFiveGameScore()
                 self.showCurrentScore()
-        self.showHistory()
+                self.showHistory()
 
             } else {
                 console.log(gameTime)
@@ -114,6 +117,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     }
 
     this.saveLastFiveGameScore = function () {
+       // this.playerName =  document.getElementById('result-player-name')
         if (this.scores.length < 5) {
             this.scores.push(this.waspDownCount)
             console.log('scores', this.scores)
@@ -137,15 +141,15 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
     this.showHistory = function () {
         let history = document.getElementById('history')
         let ul = document.createElement('ul')
-        ul.setAttribute('id','marks')
+        ul.setAttribute('id', 'marks')
         history.append(ul)
 
-        this.scores.sort((a,b) => b - a)
-        this.scores.forEach(function(el){
-           let li = document.createElement('li')
-           li.setAttribute('class', 'mark')
-           ul.append(li)
-           li.innerText = `${el} points`
+        this.scores.sort((a, b) => b - a)
+        this.scores.forEach(function (el) {
+            let li = document.createElement('li')
+            li.setAttribute('class', 'mark')
+            ul.append(li)
+            li.innerText = `${el} points`
         })
     }
 
@@ -160,6 +164,21 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         currentScore.innerText = this.waspDownCount
     }
 
+    this.savePlayerName = function () {
+        this.playerName = document.getElementById('insert-player-name').value
+        let resultPlayerName =  document.getElementById('result-player-name')
+        console.log(this.playerName)
+        resultPlayerName.innerText = this.playerName
+    }
+
+    this.resetKilledAnimals = function () {
+        this.waspDownCount = 0
+        this.beeDownCount = 0
+        this.beeHiveUpdate()
+        this.waspHiveUpdate()
+
+    }
+
     this.init = function () {
         this.createViewer()
         this.createWaspHive()
@@ -167,15 +186,9 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         this.kill()
         this.beeHiveUpdate()
         this.waspHiveUpdate()
+        this.savePlayerName()
         this.timer()
         this.loadLastGameScore()
-
     }
-    this.init()
+    //this.init()
 }
-
-/*
-let playground = document.getElementById("playground")
-document.addEventListener('click', function (e) {
-    demo.beeHiveStatus()
-})*/

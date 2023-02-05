@@ -54,7 +54,7 @@ body {
     background-position-y: center;
 }
 
-#control-panel {
+#control-panel{
     height: 50px;
     display: flex;
     justify-content: space-around;
@@ -81,5 +81,6 @@ body {
     width: 30px;
 }
 
-
-
+#playground {
+    display: none;
+}
