@@ -43,13 +43,6 @@ body {
     width: 250px;
     margin: 0 auto;
 }
-/*
-#start-btn-game {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-*/
 
 .flex-center {
     margin: 20px 0;
@@ -227,8 +220,7 @@ input {
     margin:0;
 }
 
-#delete-history-container {
+#hitory-heading {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
