@@ -1,4 +1,3 @@
-
 const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, time = 30) {
     let self = this
     this.time = time
@@ -13,7 +12,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.scores = []
     this.savedGame = localStorage.getItem('myScore')
     this.playerName
-    let timerId1 
+    let timerId1
     this.createViewer = function () {
         let playground = document.getElementById("playground")
         let viewer = document.createElement("div");
@@ -64,9 +63,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         console.log('Bees killed: ', this.beeDownCount)
         let beeCounter = document.getElementById('killed-bees')
         beeCounter.innerText = this.beeDownCount
-        // if(this.beeDownCount === 3){
 
-        // }
     }
     this.waspHiveUpdate = function () {
         console.log('wasps killed: ', this.waspDownCount)
@@ -84,7 +81,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
-                    if(self.beeDownCount === 3){
+                    if (self.beeDownCount === 3) {
                         clearInterval(timerId1)
                         let playground = document.getElementById('playground')
                         let gameOver = document.getElementById('final')
@@ -92,6 +89,10 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                         gameOver.style.display = 'block'
                         let seconds = document.getElementById('seconds')
                         seconds.innerText = 10
+                        // to update score
+                        let currentScore = document.getElementById('current-score')
+                        currentScore.innerText = self.waspDownCount
+                        self.gameOver()
                     }
                 }
             })
@@ -115,9 +116,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 let final = document.getElementById("final")
                 playground.style.display = "none"
                 final.style.display = "block"
-                self.saveLastFiveGameScore()
-                self.showCurrentScore()
-                self.showHistory()
+                self.gameOver()
 
             } else {
                 console.log(gameTime)
@@ -149,11 +148,10 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         if (this.savedGame) {
             console.log('this is saved game', JSON.parse(this.savedGame))
             this.scores = JSON.parse(this.savedGame)
-            // player.innerHTML = this.savedGame
         }
     }
 
-    this.showHistory = function () {
+    this.createHistory = function () {
         let marks = document.getElementById('marks')
         let list = document.querySelectorAll('#marks li')
         //delete the previous list
@@ -167,6 +165,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             marks.append(li)
             li.innerText = `${el.name}: ${el.mark} points`
         })
+
     }
 
     this.deleteHistory = function () {
@@ -179,13 +178,13 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.showCurrentScore = function () {
         let currentScore = document.getElementById('current-score')
-        //console.log('showcurrent score', this.waspDownCount)
-        currentScore.innerText = this.waspDownCount
+        console.log('showcurrent score', self.waspDownCount)
+        currentScore.innerText = self.waspDownCount
     }
 
     this.savePlayerName = function () {
         this.playerName = document.getElementById('insert-player-name').value
-        if(this.playerName === "") {this.playerName = "Player"}
+        if (this.playerName === "") { this.playerName = "Player" }
         let resultPlayerName = document.getElementById('result-player-name')
         console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
@@ -196,6 +195,12 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         this.beeDownCount = 0
         this.beeHiveUpdate()
         this.waspHiveUpdate()
+    }
+
+    this.gameOver = function () {
+        self.saveLastFiveGameScore()
+        self.showCurrentScore()
+        self.createHistory()
     }
 
     this.init = function () {

@@ -152,7 +152,7 @@ input {
 }
 
 #control-panel {
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -161,10 +161,11 @@ input {
 }
 
 #control-panel button {
-    border-radius: 18px;
-    padding: 10px;
+    border-radius: 30px;
+    padding: 5px;
     border: 0;
     cursor: pointer;
+    width: 42px;
 }
 #control-panel button:hover {
     background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
