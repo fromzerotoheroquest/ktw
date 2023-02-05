@@ -100,8 +100,6 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
                 clearInterval(timerId1)
                 let playground = document.getElementById("playground")
                 let final = document.getElementById("final")
-                // let controlPanel = document.getElementById("control-panel")
-                // controlPanel.style.display = "none"
                 playground.style.display = "none"
                 final.style.display = "block"
                 self.saveLastFiveGameScore()
@@ -150,7 +148,7 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         //order scores
         this.scores.sort((a, b) => b.mark - a.mark)
         //create new list with sorted scores
-        this.scores.forEach(function (el, idx) {
+        this.scores.forEach(function (el) {
             let li = document.createElement('li')
             li.setAttribute('class', 'mark')
             marks.append(li)
@@ -162,6 +160,8 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         localStorage.removeItem('myScore')
         let list = document.querySelectorAll('#marks li')
         list.forEach(el => el.remove())
+        this.scores = []
+        this.savedGame = ''
     }
 
     this.showCurrentScore = function () {
@@ -195,5 +195,5 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         this.timer()
         this.loadLastGameScore()
     }
-    //this.init()
+
 }

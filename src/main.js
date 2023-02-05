@@ -1,4 +1,4 @@
-let demo = new Game(undefined, undefined, 10, 10, 3)
+let demo = new Game(undefined, undefined, 3, 3, 1)
 
 
 // Interface
@@ -13,7 +13,6 @@ let beginningLayout = document.getElementById('start')
 let playgroundLayout = document.getElementById('playground')
 let finalLayout = document.getElementById('final')
 let controlPanel = document.getElementById('control-panel')
-
 
 deleteScoreBtn.addEventListener('click', function(){
   demo.deleteHistory()
