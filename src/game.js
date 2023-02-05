@@ -118,13 +118,17 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
 
     this.saveLastFiveGameScore = function () {
         // this.playerName =  document.getElementById('result-player-name')
+        let player = {
+            name: this.playerName,
+            mark: this.waspDownCount
+        }
         if (this.scores.length < 5) {
-            this.scores.push(this.waspDownCount)
+            this.scores.push(player)
             console.log('scores', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         } else {
             this.scores.shift()
-            this.scores.push(this.waspDownCount)
+            this.scores.push(player)
             console.log('scores', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         }
@@ -144,13 +148,13 @@ const Game = function (waspSpeed = 8, beeSpeed = 1, waspQty = 5, beeQty = 3, tim
         //delete the previous list
         list.forEach(el => el.remove())
         //order scores
-        this.scores.sort((a, b) => b - a)
+        this.scores.sort((a, b) => b.mark - a.mark)
         //create new list with sorted scores
         this.scores.forEach(function (el, idx) {
             let li = document.createElement('li')
             li.setAttribute('class', 'mark')
             marks.append(li)
-            li.innerText = `${el} points`
+            li.innerText = `${el.name}: ${el.mark} points`
         })
     }
 
