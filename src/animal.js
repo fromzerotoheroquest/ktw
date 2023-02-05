@@ -22,13 +22,14 @@ const Animal = function (type, speed) {
     this.die = function () {
         let allAnimals = document.querySelectorAll(`.${this.type}`)
         allAnimals.forEach(animal => animal.addEventListener('click', function (e) {
-            //e.target.remove()
+            // e.target.remove()
             let posX = parseInt(animal.style.left.slice(0, -2))
             let posY = parseInt(animal.style.top.slice(0, -2))
             if ((posX < e.clientX && e.clientX < posX + 50) &&
                 (posY < e.clientY && e.clientY < posY + 50)) {
                 animal.remove()
                 lastBreath(this, sfxStatus)
+                console.log('dead from animal die method')
             }
         }))
     }

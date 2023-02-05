@@ -1,14 +1,17 @@
 body {
     margin: 0;
 }
+
 #final {
     display: none;
 }
+
 #container {
     width: 800px;
 }
 
 #playground {
+    display: none;
     cursor: crosshair;
     position: relative;
     width: 800px;
@@ -28,6 +31,7 @@ body {
     height: 36px;
     background-color: rgba(0, 128, 0, 0.459);
     border-radius: 18px;
+    z-index: 0;
 }
 
 .wasp {
@@ -40,6 +44,7 @@ body {
     background-size: 200%;
     background-position-x: center;
     background-position-y: center;
+    z-index: 1000;
 }
 
 .bee {
@@ -52,6 +57,7 @@ body {
     background-size: 80%;
     background-position-x: center;
     background-position-y: center;
+    z-index: 1000;
 }
 
 #control-panel {
@@ -63,14 +69,29 @@ body {
     color: #fff;
 }
 
-#control-panel button{
+#control-panel button {
     border-radius: 10px;
     padding: 5px;
     border: 0;
     cursor: pointer;
 }
 
-#killed-wasps, #killed-bees, #seconds {
+#killed-wasps,
+#killed-bees,
+#seconds {
     font-size: 26px;
     padding-left: 5px;
+}
+
+.icon {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
+#playground {}
+
+.layout {
+    width: 800px;
+    height: 600px;
 }

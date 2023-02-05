@@ -17,9 +17,24 @@
 
 <body>
     <div id="container">
-        <div id="start"></div>
-        <div id="playground"></div>
-        <div id="final">Game OVer</div>
+        <div id="start" class="layout">
+            <div><label for="insert-player-name"><input type="text" name="" id="insert-player-name"
+                        value="Anonimous"></label></div>
+            <div><button id="start-btn">start</button></div>
+        </div>
+        <div id="playground" class="layout"></div>
+        <div id="final" class="layout">
+            <div id="result"><span id="result-player-name"></span><span>, your score is: </span><span
+                    id="current-score"></span></div>
+            <div>
+                <span>Last games:</span>
+                <div id="history">
+                    <ul id="marks"></ul>
+                </div>
+            </div>
+            <div><img id="delete-history" class="icon" src="assets/images/delete-icon.svg" alt=""></div>
+            <div><button id="replay-btn">Replay</button></div>
+        </div>
         <div id="control-panel">
             <div> <button id="music-btn">music OFF</button>
             </div>
@@ -28,11 +43,13 @@
             <div><span>Dead bees:</span><span id="killed-bees">0</span></div>
             <div><span>Dead wasps:</span><span id="killed-wasps">0</span></div>
             <div id="timer">
-                <span id="seconds">0</span>
-                <span> secs</span> 
+                <span id="seconds"></span>
+                <span> secs</span>
             </div>
         </div>
+
     </div>
+
 
     <div id="sound-effects">
         <audio id="buzzing" src="assets/sound/buzzing.mp3"></audio>
