@@ -55,7 +55,7 @@ musicBtn.addEventListener('click', function () {
   if (natureSound === false) {
     music.playEffect()
     natureSound = true
-    musicBtn.innerText = 'musin ON'
+    musicBtn.innerText = 'music ON'
   } else {
     music.stopEffect()
     natureSound = false

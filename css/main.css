@@ -1,13 +1,94 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../assets/fonts/Ubuntu-Light.eot');
+    src: url('../assets/fonts/Ubuntu-Light.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Ubuntu-Light.woff2') format('woff2'),
+        url('../assets/fonts/Ubuntu-Light.woff') format('woff'),
+        url('../assets/fonts/Ubuntu-Light.svg#Ubuntu-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
 body {
     margin: 0;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-size: calc(16px + 1vw);
+    line-height: calc(1.1em 0.5vw);
 }
 
-#final {
-    display: none;
-}
+
+
 
 #container {
     width: 800px;
+}
+
+#start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
+        url("../assets/images/hiveBg2.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-blend-mode: normal;
+}
+
+#logo {
+    width: 250px;
+    margin: 0 auto;
+}
+/*
+#start-btn-game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+*/
+
+.flex-center {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#start-btn,
+#replay-btn {
+    box-shadow: 0px 0px 15px 10px #fff6af;
+    background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
+    background-color: #ffec64;
+    border-radius: 25px;
+    border: 1px solid #935c02;
+    display: inline-block;
+    cursor: pointer;
+    color: #333333;
+    font-size: 1.5rem;
+    padding: 14px 22px;
+    text-decoration: none;
+}
+
+#start-btn:hover,
+#replay-btn:hover {
+    box-shadow: 0px 0px 15px 20px #fff6af;
+}
+
+#start-btn:active,
+#replay-btn:active {
+    position: relative;
+    top: 1px;
+}
+
+input {
+    border-radius: 100px 100px 100px;
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 15px;
+    font-size: 25px;
 }
 
 #playground {
@@ -19,9 +100,26 @@ body {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../assets/images/forestBg.jpg");
     background-position-x: center;
     background-position-y: center;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)), url("../assets/images/forestBg.jpg");
+    background-blend-mode: multiply;
+
+}
+
+#final {
+    display: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
+        url("../assets/images/hiveBg.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-blend-mode: normal;
+}
+
+#result {
+    font-size: 2rem;
 }
 
 #viewer {
@@ -70,16 +168,23 @@ body {
 }
 
 #control-panel button {
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 18px;
+    padding: 10px;
     border: 0;
     cursor: pointer;
 }
+#control-panel button:hover {
+    background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
+}
+
+
+#control-panel span:first-child {
+    font-size: 1rem;
+}
 
 #killed-wasps,
-#killed-bees,
-#seconds {
-    font-size: 26px;
+#killed-bees, {
+    font-size: 1.5rem;
     padding-left: 5px;
 }
 
@@ -88,8 +193,6 @@ body {
     height: 30px;
     width: 30px;
 }
-
-#playground {}
 
 .layout {
     width: 800px;
@@ -104,4 +207,28 @@ body {
     font-size: 100px;
     z-index: 0;
     padding: 0 25px 25px 0;
+}
+
+
+#final-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-top: 90px;
+    flex-wrap: wrap;
+}
+
+#last-games {
+    margin-top: 40px;
+}
+
+#history h5 {
+    margin:0;
+}
+
+#delete-history-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
