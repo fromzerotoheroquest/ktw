@@ -158,6 +158,14 @@ input {
     opacity: 0.8;
 }
 
+#vitals > div {
+    margin-bottom: 10px;
+}
+
+#vitals div:nth-child(3) {
+    font-size: 1rem;
+}
+
 .bee {
     position: absolute;
     width: 50px;
@@ -252,4 +260,30 @@ input {
 #hitory-heading {
     display: flex;
     justify-content: space-between;
+}
+
+#bee-lives {
+    display: flex;
+    justify-content:flex-start;
+    width: 200px;
+    padding-bottom: 0;
+}
+
+#bee-lives img {
+    width: 30px;
+    height:auto;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.life {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 30px;
+    background: url("../assets/images/bee-icon.png");
+    background-color: rgba(239, 202, 18, 0.844);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }

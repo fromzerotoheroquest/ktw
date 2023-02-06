@@ -12,6 +12,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.scores = []
     this.savedGame = localStorage.getItem('myScore')
     this.playerName
+    this.userLives = 3
 
     let timerId1
 
@@ -84,14 +85,12 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
-
+                    self.displayBeeLives()
                     if (self.beeDownCount === 3) {
-
                         // to update score
                         let currentScore = document.getElementById('current-score')
                         currentScore.innerText = self.waspDownCount 
                         self.gameOver()
-
                     }
                 }
             })
@@ -109,6 +108,21 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             })
         })
     }
+
+    this.displayBeeLives = function() {
+        this.lifeIcons = document.querySelector(".life")
+        this.lifeIcons.remove()
+    }
+
+    this.recreateBeeLivesIcons = function(){
+        for(let i = 0; i < this.userLives; i++){
+            let icons = document.createElement('div')
+            icons.setAttribute('class', 'life')
+            let beeLivesContainer = document.getElementById('bee-lives')
+            beeLivesContainer.append(icons)
+        }
+    }
+
     this.timer = function () {
         let gameTime = this.time
         timerId1 = setInterval(function () {
@@ -215,6 +229,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
 
     this.init = function () {
+        this.recreateBeeLivesIcons()
         this.createViewer()
         this.createWaspHive()
         this.createBeeHive()
