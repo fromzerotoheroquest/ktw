@@ -1,5 +1,5 @@
 
-let demo = new Game(undefined, undefined, 10, 80, 300)
+let demo = new Game(undefined, undefined, 3, 3, 30)
 
 // Interface
 
@@ -33,7 +33,7 @@ replayBtn.addEventListener('click', function () {
   toFadeIn('start')
   playgroundLayout.style.display = 'none'
   toFadeOut('final')
-  demo.resetKilledAnimals()
+  demo.init()
 })
 
 inputPlayer.addEventListener('keydown', function (e) {
@@ -47,7 +47,7 @@ inputPlayer.addEventListener('keydown', function (e) {
   }
 })
 
-
+// aux functions to fadeIn and fadeOut elements
 function toFadeOut(id) {
   let element = document.getElementById(`${id}`)
   let opacity = 1
@@ -82,8 +82,5 @@ function toFadeIn(id) {
       element.style.opacity = 1
     }
   }, 50)
-  
 }
 
-// toFadeOut('control-panel')
-// toFadeIn('control-panel')

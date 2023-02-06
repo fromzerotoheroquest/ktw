@@ -141,7 +141,7 @@ input {
     position: absolute;
     width: 36px;
     height: 36px;
-    background-color: rgba(0, 128, 0, 0.1);
+    background-color: rgba(0, 128, 0, 0.4);
     border-radius: 18px;
     z-index: 0;
 }
@@ -158,6 +158,20 @@ input {
     background-position-y: center;
     z-index: 1000;
 }
+
+.bee {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../assets/images/bee.gif");
+    background-size: 80%;
+    background-position-x: center;
+    background-position-y: center;
+    z-index: 1000;
+}
+
 
 #vitals {
     position:absolute;
@@ -180,18 +194,6 @@ input {
     font-size: 1rem;
 }
 
-.bee {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../assets/images/bee.gif");
-    background-size: 80%;
-    background-position-x: center;
-    background-position-y: center;
-    z-index: 1000;
-}
 
 #control-panel {
     width: 900px;

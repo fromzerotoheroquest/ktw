@@ -17,13 +17,9 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     let timerId1
 
     this.createViewer = function () {
-        let playground = document.getElementById("playground")
+        let viewer = document.getElementById("viewer")
         //let layoutDimension = document.querySelector('.layout')
         let cursorOffsetX = (window.innerWidth - 900) / 2
-        console.log('from create viewer', cursorOffsetX)
-        let viewer = document.createElement("div");
-        viewer.setAttribute('id', 'viewer')
-        playground.append(viewer)
         document.addEventListener('mousemove', function (e) {
             let cursorX = e.clientX;
             let cursorY = e.clientY;
@@ -89,7 +85,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                     self.beeDownCount++
                     self.beeHiveUpdate()
                     self.displayBeeLives()
-                    if (self.beeDownCount === 3) {
+                    if (self.beeDownCount === self.userLives || self.beeDownCount === self.beeQty ) {
                         // to update score
                         let currentScore = document.getElementById('current-score')
                         currentScore.innerText = self.waspDownCount 
@@ -133,16 +129,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         timerId1 = setInterval(function () {
             if (gameTime < 0) {
                 clearInterval(timerId1)
-                let playground = document.getElementById("playground")
-                let final = document.getElementById("final")
-                /*
-                playground.style.display = "none"
-                final.style.display = "block"
-                */
                 self.gameOver()
-
             } else {
-                //console.log(gameTime)
                 document.getElementById("seconds").innerText = gameTime
                 gameTime--
             }
@@ -217,25 +205,27 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.resetKilledAnimals = function () {
         this.waspDownCount = 0
         this.beeDownCount = 0
+        this.resetDom
         this.beeHiveUpdate()
         this.waspHiveUpdate()
+    }
 
+    this.resetDom = function () {
+        let beeColony = document.querySelectorAll('.bee')
+        let waspColony = document.querySelectorAll('.wasp')
+        beeColony.forEach(el => el.remove())
+        waspColony.forEach(el => el.remove())
     }
 
     this.gameOver = function () {
         clearInterval(timerId1)
         let seconds = document.getElementById('seconds')
         seconds.innerText = ''
-        /*
-        let playground = document.getElementById('playground')
-        let gameOver = document.getElementById('final')
-        playground.style.display = 'none'
-        gameOver.style.display = 'block'
-        */
         self.saveLastFiveGameScore()
         self.showCurrentScore()
         self.createHistory()
         toFadeOut('playground')
+        this.resetKilledAnimals()
     }
 
     this.init = function () {
