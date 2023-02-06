@@ -10,7 +10,7 @@ const Animal = function (type, speed) {
         return Math.floor(Math.random() * (number + 1))
     }
     this.create = function () {
-        this.coords.x = this.randomNumber(700);
+        this.coords.x = this.randomNumber(800);
         this.coords.y = this.randomNumber(500);
         this.animal = document.createElement("div");
         this.animal.setAttribute('class', type)
@@ -35,7 +35,7 @@ const Animal = function (type, speed) {
     }
     
     this.move = function () {
-        if (this.coords.x <= 0 || this.coords.x >= 750) {
+        if (this.coords.x <= 0 || this.coords.x >= 850) {
             this.directionX *= -1
         }
         this.coords.x += this.speed * this.directionX

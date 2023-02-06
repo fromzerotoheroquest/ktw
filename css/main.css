@@ -16,10 +16,6 @@ body {
     line-height: calc(1.1em 0.5vw);
 }
 
-#container {
-    width: 800px;
-}
-
 #start {
     display: block;
     background-size: cover;
@@ -29,6 +25,11 @@ body {
     background-position-x: center;
     background-position-y: center;
     background-blend-mode: normal;
+}
+
+.layout {
+    width: 900px;
+    height: 600px;
 }
 
 #logo {
@@ -90,8 +91,6 @@ input {
     display: none;
     cursor: crosshair;
     position: relative;
-    width: 800px;
-    height: 600px;
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
@@ -214,11 +213,6 @@ input {
     cursor: pointer;
     height: 30px;
     width: 30px;
-}
-
-.layout {
-    width: 800px;
-    height: 600px;
 }
 
 #seconds {
