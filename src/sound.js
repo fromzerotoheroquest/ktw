@@ -39,10 +39,10 @@ sfxBtn.addEventListener('click', function () {
   if (sfxStatus === false) {
     sfxStatus = true
     buzzing.playLoop()
-    sfxBtn.innerText = 'sound effects ON'
+    sfxBtn.innerHTML = '<img class="icon" src="assets/images/sfx-on-icon.svg">'
   } else {
     sfxStatus = false
-    sfxBtn.innerText = 'sound effects OFF'
+    sfxBtn.innerHTML = '<img class="icon" src="assets/images/sfx-off-icon.svg">'
     buzzing.stopEffect()
   }
 })
@@ -55,11 +55,11 @@ musicBtn.addEventListener('click', function () {
   if (natureSound === false) {
     music.playEffect()
     natureSound = true
-    musicBtn.innerText = 'musin ON'
+    musicBtn.innerHTML = '<img class="icon" src="assets/images/music-on-icon.svg">'
   } else {
     music.stopEffect()
     natureSound = false
-    musicBtn.innerText = 'music OFF'
+    musicBtn.innerHTML = '<img class="icon" src="assets/images/music-off-icon.svg">'
   }
 })
 

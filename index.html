@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -20,38 +21,49 @@
 <body>
     <div id="container">
         <div id="start" class="layout">
-            <div id="logo">
-                <img src="/assets/images/logo.svg" alt="logo-kill-the-wasp">
+
+            <div class="flex">
+                <div id="logo">
+                    <img src="/assets/images/logo.svg" alt="logo-kill-the-wasp">
+                </div>
+                <div><label for="insert-player-name"><input type="text" name="" id="insert-player-name" value=""
+                            placeholder="Insert player name"></label></div>
+                <div class="flex-center"><button id="start-btn">Start</button></div>
             </div>
-            <div><label for="insert-player-name"><input type="text" name="" id="insert-player-name" value=""
-                        placeholder="Insert player name"></label></div>
-            <div id="start-btn-game"><button id="start-btn">Start</button></div>
+
         </div>
         <div id="playground" class="layout">
             <div id="seconds"></div>
         </div>
         <div id="final" class="layout">
             <div id="final-wrapper">
-                <div id="result"></strong><span id="result-player-name"></span></span><span>, your score is: </span><span
-                        id="current-score"></span></div>
-                <div id="last-games">
-                    <span>Last games:</span>
+
+                <div id="result"><span id="result-player-name"></span></span><span>, your score is:
+                    </span><span id="current-score"></span></div>
+                <div id="last-games" class="flex-center">
                     <div id="history">
+                        <div id="hitory-heading">
+                            <h5>Last games:</h5><span id="delete-history-container"><img id="delete-history"
+                                    class="icon" src="assets/images/delete-icon.svg" alt=""></span>
+                        </div>
+
                         <ol id="marks"></ol>
                     </div>
                 </div>
-                <div id="delete-history-container"><img id="delete-history" class="icon"
-                        src="assets/images/delete-icon.svg" alt=""></div>
-                <div><button id="replay-btn">Replay</button></div>
+
+                <div class="flex-center"><button id="replay-btn">Replay</button></div>
+
+
+
             </div>
         </div>
         <div id="control-panel">
-            <div> <button id="music-btn">music OFF</button>
+            <div> <button id="music-btn"><img class="icon" src="assets/images/music-off-icon.svg" alt=""></button>
             </div>
-            <div> <button id="sfx-btn">sound effects OFF</button>
+            <div> <button id="sfx-btn"><img class="icon" src="assets/images/sfx-off-icon.svg" alt=""></button>
             </div>
-            <div><span>Dead bees:</span><span id="killed-bees">0</span></div>
-            <div><span>Dead wasps:</span><span id="killed-wasps">0</span></div>
+            <div><span>Dead bees: </span><span id="killed-bees">0</span></div>
+            <div><span>Dead wasps: </span><span id="killed-wasps">0</span></div>
         </div>
 
     </div>

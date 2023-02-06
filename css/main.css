@@ -1,17 +1,92 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../assets/fonts/Ubuntu-Light.eot');
+    src: url('../assets/fonts/Ubuntu-Light.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Ubuntu-Light.woff2') format('woff2'),
+        url('../assets/fonts/Ubuntu-Light.woff') format('woff'),
+        url('../assets/fonts/Ubuntu-Light.svg#Ubuntu-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-size: calc(16px + 1vw);
+    line-height: calc(1.1em 0.5vw);
 }
-
-#final {
-    display: none;
-}
-
 
 #container {
     width: 800px;
 }
 
+#start {
+    display: block;
+
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
+        url("../assets/images/hiveBg2.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-blend-mode: normal;
+}
+
+#logo {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.flex {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;  
+      flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.flex-center {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#start-btn,
+#replay-btn {
+    box-shadow: 0px 0px 15px 10px #fff6af;
+    background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
+    background-color: #ffec64;
+    border-radius: 25px;
+    border: 1px solid #935c02;
+    display: inline-block;
+    cursor: pointer;
+    color: #333333;
+    font-size: 1.5rem;
+    padding: 14px 22px;
+    text-decoration: none;
+}
+
+#start-btn:hover,
+#replay-btn:hover {
+    box-shadow: 0px 0px 15px 20px #fff6af;
+}
+
+#start-btn:active,
+#replay-btn:active {
+    position: relative;
+    top: 1px;
+}
+
+input {
+    border-radius: 100px 100px 100px;
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 15px;
+    font-size: 25px;
+}
 
 #playground {
     display: none;
@@ -22,9 +97,26 @@ body {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../assets/images/forestBg.jpg");
     background-position-x: center;
     background-position-y: center;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)), url("../assets/images/forestBg.jpg");
+    background-blend-mode: multiply;
+
+}
+
+#final {
+    display: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
+        url("../assets/images/hiveBg.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-blend-mode: normal;
+}
+
+#result {
+    font-size: 2rem;
 }
 
 #viewer {
@@ -64,7 +156,7 @@ body {
 }
 
 #control-panel {
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -73,16 +165,24 @@ body {
 }
 
 #control-panel button {
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 5px;
     border: 0;
     cursor: pointer;
+    width: 42px;
+}
+#control-panel button:hover {
+    background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
+}
+
+
+#control-panel span:first-child {
+    font-size: 1rem;
 }
 
 #killed-wasps,
-#killed-bees,
-#seconds {
-    font-size: 26px;
+#killed-bees, {
+    font-size: 1.5rem;
     padding-left: 5px;
 }
 
@@ -95,7 +195,6 @@ body {
 .layout {
     width: 800px;
     height: 600px;
-    background-color: #ffec64;
 }
 
 #seconds {
@@ -108,93 +207,25 @@ body {
     padding: 0 25px 25px 0;
 }
 
-#start {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    background-image: url("/assets/images/front-page.jpg");
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: cover;
-}
-
-#logo {
-    width: 250px;
-    margin: 0 auto;
-}
-
-#start-btn-game {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-#start-btn, #replay-btn {
-    margin: 25px;
-    box-shadow: 0px 1px 0px 0px #fff6af;
-	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-	background-color:#ffec64;
-	border-radius:25px;
-	border:1px solid #ffaa22;
-	display:inline-block;
-	cursor:pointer;
-	color:#333333;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffee66;
-
-}
-#start-btn:hover, #replay-btn:hover {
-	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
-	background-color:#ffab23;
-}
-
-#start-btn:active, #replay-btn:active {
-	position:relative;
-	top:1px;
-}
-
-input {
-    border-radius: 100px 100px 100px; 
-    border: 2px solid #000000;
-    text-align: center;
-    padding: 15px;
-    font-size: 25px;
-}
 
 #final-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    padding-top: 100px;
+    padding-top: 90px;
     flex-wrap: wrap;
 }
 
 #last-games {
-    margin-top: 15px;
+    margin-top: 40px;
 }
 
-#marks {
-    padding: 25px;
-    padding-left: 30px;
-}
-#last-games span {
-    padding-left: 30px;
+#history h5 {
+    margin:0;
 }
 
-#delete-history-container {
+#hitory-heading {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
-
-
-
-

@@ -1,4 +1,7 @@
-let demo = new Game(undefined, undefined, 10, 100, 10)
+
+let demo = new Game(undefined, undefined, 10, 100, 3)
+
+
 
 
 // Interface
@@ -20,6 +23,7 @@ deleteScoreBtn.addEventListener('click', function(){
 
 
 startBtn.addEventListener('click', function(){
+  soundOnClick(sfxStatus)
   demo.init()
   beginningLayout.style.display = 'none'
   //controlPanel.style.display = 'block'
@@ -28,9 +32,10 @@ startBtn.addEventListener('click', function(){
 })
 
 replayBtn.addEventListener('click', function(){
-  beginningLayout.style.display = 'flex'
+  soundOnClick(sfxStatus)
+  beginningLayout.style.display = 'block'
+
   playgroundLayout.style.display = 'none'
   finalLayout.style.display = 'none'
   demo.resetKilledAnimals()
 })
-
