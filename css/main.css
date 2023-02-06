@@ -16,19 +16,13 @@ body {
     line-height: calc(1.1em 0.5vw);
 }
 
-
-
-
 #container {
     width: 800px;
 }
 
 #start {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
+    display: block;
+
 
     background-size: cover;
     background-repeat: no-repeat;
@@ -42,6 +36,16 @@ body {
 #logo {
     width: 250px;
     margin: 0 auto;
+}
+
+.flex {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;  
+      flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 .flex-center {

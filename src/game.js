@@ -88,7 +88,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                         playground.style.display = 'none'
                         gameOver.style.display = 'block'
                         let seconds = document.getElementById('seconds')
-                        seconds.innerText = 10
+                        seconds.innerText = self.time
                         // to update score
                         let currentScore = document.getElementById('current-score')
                         currentScore.innerText = self.waspDownCount
@@ -116,6 +116,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 let final = document.getElementById("final")
                 playground.style.display = "none"
                 final.style.display = "block"
+                let seconds = document.getElementById('seconds')
+                seconds.innerText = ""
                 self.gameOver()
 
             } else {

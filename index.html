@@ -21,12 +21,14 @@
 <body>
     <div id="container">
         <div id="start" class="layout">
-            <div id="logo">
-                <img src="/assets/images/logo.svg" alt="logo-kill-the-wasp">
+            <div class="flex">
+                <div id="logo">
+                    <img src="/assets/images/logo.svg" alt="logo-kill-the-wasp">
+                </div>
+                <div><label for="insert-player-name"><input type="text" name="" id="insert-player-name" value=""
+                            placeholder="Insert player name"></label></div>
+                <div class="flex-center"><button id="start-btn">Start</button></div>
             </div>
-            <div><label for="insert-player-name"><input type="text" name="" id="insert-player-name" value=""
-                        placeholder="Insert player name"></label></div>
-            <div class="flex-center"><button id="start-btn">Start</button></div>
         </div>
         <div id="playground" class="layout">
             <div id="seconds"></div>
@@ -37,9 +39,11 @@
                     </span><span id="current-score"></span></div>
                 <div id="last-games" class="flex-center">
                     <div id="history">
-                        <div id="hitory-heading"><h5>Last games:</h5><span id="delete-history-container"><img id="delete-history" class="icon"
-                        src="assets/images/delete-icon.svg" alt=""></span></div>
-                        
+                        <div id="hitory-heading">
+                            <h5>Last games:</h5><span id="delete-history-container"><img id="delete-history"
+                                    class="icon" src="assets/images/delete-icon.svg" alt=""></span>
+                        </div>
+
                         <ol id="marks"></ol>
                     </div>
                 </div>
