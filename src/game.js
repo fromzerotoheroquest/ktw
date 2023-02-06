@@ -70,7 +70,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.waspHiveUpdate = function () {
         console.log('wasps killed: ', this.waspDownCount)
         let waspCounter = document.getElementById('killed-wasps')
-        waspCounter.innerText = this.waspDownCount
+        waspCounter.innerText = `${this.waspDownCount} / ${this.waspQty}`
+           
     }
     this.kill = function () {
         let playground = document.getElementById('playground')
@@ -128,7 +129,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
 
     this.saveLastFiveGameScore = function () {
-        // this.playerName =  document.getElementById('result-player-name')
         let player = {
             name: this.playerName,
             mark: this.waspDownCount,
