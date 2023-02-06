@@ -88,7 +88,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
                         // to update score
                         let currentScore = document.getElementById('current-score')
-                        currentScore.innerText = self.waspDownCount
+                        currentScore.innerText = self.waspDownCount 
                         self.gameOver()
 
                     }
@@ -131,7 +131,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         // this.playerName =  document.getElementById('result-player-name')
         let player = {
             name: this.playerName,
-            mark: this.waspDownCount
+            mark: this.waspDownCount,
+            qty: this.waspQty
         }
         if (this.scores.length < 5) {
             this.scores.push(player)
@@ -155,6 +156,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.createHistory = function () {
         let marks = document.getElementById('marks')
         let list = document.querySelectorAll('#marks li')
+        console.log('this is scores localstorage: ',this.scores)
         //delete the previous list
         list.forEach(el => el.remove())
         //order scores
@@ -164,7 +166,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             let li = document.createElement('li')
             li.setAttribute('class', 'mark')
             marks.append(li)
-            li.innerText = `${el.name}: ${el.mark} points`
+            li.innerText = `${el.name}: ${el.mark} wasps out of ${el.qty}`
         })
 
     }
@@ -180,7 +182,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.showCurrentScore = function () {
         let currentScore = document.getElementById('current-score')
         console.log('showcurrent score', self.waspDownCount)
-        currentScore.innerText = self.waspDownCount
+        currentScore.innerText = `${self.waspDownCount } out of ${self.waspQty} wasps`
     }
 
     this.savePlayerName = function () {
