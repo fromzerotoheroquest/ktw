@@ -14,6 +14,11 @@ body {
     font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
     font-size: 18px;
     line-height: calc(1.1em 0.5vw);
+    background-color: #000;
+}
+
+#container {
+    margin:auto;
 }
 
 #start {

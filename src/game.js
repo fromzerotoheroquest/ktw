@@ -18,6 +18,9 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.createViewer = function () {
         let playground = document.getElementById("playground")
+        //let layoutDimension = document.querySelector('.layout')
+        let cursorOffsetX = (window.innerWidth - 900) / 2
+        console.log('from create viewer', cursorOffsetX)
         let viewer = document.createElement("div");
         viewer.setAttribute('id', 'viewer')
         playground.append(viewer)
@@ -25,7 +28,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             let cursorX = e.clientX;
             let cursorY = e.clientY;
             let offSet = 18
-            viewer.style.left = cursorX - offSet + 'px';
+            viewer.style.left = cursorX - offSet - cursorOffsetX + 'px';
             viewer.style.top = cursorY - offSet + 'px';
             //console.log(cursorX, cursorY)
         });
@@ -76,10 +79,10 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
     this.kill = function () {
         let playground = document.getElementById('playground')
-
+        let cursorOffsetX = (window.innerWidth - 900) / 2
         playground.addEventListener('click', function (e) {
             self.beeHive.forEach(function (bee, idx) {
-                if ((bee.coords.x < e.clientX && e.clientX < bee.coords.x + 50) &&
+                if ((bee.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < bee.coords.x + 50) &&
                     (bee.coords.y < e.clientY && e.clientY < bee.coords.y + 50)) {
                     console.log('bee dead')
                     self.beeHive.splice(idx, 1)
@@ -95,7 +98,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 }
             })
             self.waspHive.forEach(function (wasp, idx) {
-                if ((wasp.coords.x < e.clientX && e.clientX < wasp.coords.x + 50) &&
+                if ((wasp.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < wasp.coords.x + 50) &&
                     (wasp.coords.y < e.clientY && e.clientY < wasp.coords.y + 50)) {
                     console.log('wasp dead')
                     self.waspHive.splice(idx, 1)
@@ -137,7 +140,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 self.gameOver()
 
             } else {
-                console.log(gameTime)
+                //console.log(gameTime)
                 document.getElementById("seconds").innerText = gameTime
                 gameTime--
             }
