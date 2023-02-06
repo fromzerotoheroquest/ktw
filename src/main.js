@@ -1,9 +1,6 @@
 
 let demo = new Game(undefined, undefined, 10, 80, 300)
 
-
-
-
 // Interface
 
 //Buttons
@@ -18,38 +15,75 @@ let playgroundLayout = document.getElementById('playground')
 let finalLayout = document.getElementById('final')
 let controlPanel = document.getElementById('control-panel')
 
-deleteScoreBtn.addEventListener('click', function(){
+deleteScoreBtn.addEventListener('click', function () {
   demo.deleteHistory()
 })
 
 
-startBtn.addEventListener('click', function(){
+startBtn.addEventListener('click', function () {
   soundOnClick(sfxStatus)
   demo.init()
-  beginningLayout.style.display = 'none'
-  //controlPanel.style.display = 'block'
+  toFadeOut('start')
   playgroundLayout.style.display = 'block'
-  finalLayout.style.display = 'none'
+  finalLayout.style.display = 'block'
 })
 
-replayBtn.addEventListener('click', function(){
+replayBtn.addEventListener('click', function () {
   soundOnClick(sfxStatus)
-  beginningLayout.style.display = 'block'
-
+  toFadeIn('start')
   playgroundLayout.style.display = 'none'
-  finalLayout.style.display = 'none'
+  toFadeOut('final')
   demo.resetKilledAnimals()
 })
 
 inputPlayer.addEventListener('keydown', function (e) {
   console.log(e.key)
-  if(e.key === "Enter"){
+  if (e.key === "Enter") {
     soundOnClick(sfxStatus)
     demo.init()
     beginningLayout.style.display = 'none'
-    //controlPanel.style.display = 'block'
     playgroundLayout.style.display = 'block'
     finalLayout.style.display = 'none'
   }
 })
 
+
+function toFadeOut(id) {
+  let element = document.getElementById(`${id}`)
+  let opacity = 1
+
+  let timer = setInterval(function () {
+    if (opacity > 0) {
+      opacity -= 0.1
+      console.log('from fadeout', opacity)
+      element.style.opacity = opacity
+    } else {
+      console.log('element off')
+      clearInterval(timer)
+      element.style.display = 'none'
+      element.style.opacity = 1
+    }
+  }, 50)
+  
+}
+
+function toFadeIn(id) {
+  let element = document.getElementById(`${id}`)
+  let opacity = 0
+
+  let timer = setInterval(function () {
+    if (opacity <= 1) {
+      opacity += 0.1
+      console.log('from fadeout', opacity)
+      element.style.opacity = opacity
+    } else {
+      clearInterval(timer)
+      element.style.display = 'block'
+      element.style.opacity = 1
+    }
+  }, 50)
+  
+}
+
+// toFadeOut('control-panel')
+// toFadeIn('control-panel')

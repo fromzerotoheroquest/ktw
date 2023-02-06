@@ -19,9 +19,13 @@ body {
 
 #container {
     margin:auto;
+    position:relative;
 }
 
 #start {
+    position:absolute;
+    z-index:100;
+    top:0;
     display: block;
     background-size: cover;
     background-repeat: no-repeat;
@@ -93,7 +97,10 @@ input {
 }
 
 #playground {
-    display: none;
+    position:absolute;
+    z-index:50;
+    top:0;
+    display: block;
     cursor: crosshair;
     position: relative;
     overflow: hidden;
@@ -107,7 +114,10 @@ input {
 }
 
 #final {
-    display: none;
+    position:absolute;
+    z-index:0;
+    top:0;
+    display: block;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
@@ -131,7 +141,7 @@ input {
     position: absolute;
     width: 36px;
     height: 36px;
-    background-color: rgba(0, 128, 0, 0.459);
+    background-color: rgba(0, 128, 0, 0.1);
     border-radius: 18px;
     z-index: 0;
 }
@@ -184,12 +194,14 @@ input {
 }
 
 #control-panel {
+    width: 900px;
     height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #190e05;
     color: #fff;
+    margin:auto;
 }
 
 #control-panel button {

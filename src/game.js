@@ -135,8 +135,10 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 clearInterval(timerId1)
                 let playground = document.getElementById("playground")
                 let final = document.getElementById("final")
+                /*
                 playground.style.display = "none"
                 final.style.display = "block"
+                */
                 self.gameOver()
 
             } else {
@@ -224,13 +226,16 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         clearInterval(timerId1)
         let seconds = document.getElementById('seconds')
         seconds.innerText = ''
+        /*
         let playground = document.getElementById('playground')
         let gameOver = document.getElementById('final')
         playground.style.display = 'none'
         gameOver.style.display = 'block'
+        */
         self.saveLastFiveGameScore()
         self.showCurrentScore()
         self.createHistory()
+        toFadeOut('playground')
     }
 
     this.init = function () {
