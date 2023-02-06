@@ -21,7 +21,6 @@
 <body>
     <div id="container">
         <div id="start" class="layout">
-
             <div class="flex">
                 <div id="logo">
                     <img src="assets/images/logo.svg" alt="logo-kill-the-wasp">
@@ -34,10 +33,13 @@
         </div>
         <div id="playground" class="layout">
             <div id="seconds"></div>
+            <div id="vitals">
+                <div><span>Dead wasps: </span><span id="killed-wasps">0</span></div>
+                <div><span>Dead bees: </span><span id="killed-bees">0</span></div>
+            </div>
         </div>
         <div id="final" class="layout">
             <div id="final-wrapper">
-
                 <div id="result"><span id="result-player-name"></span></span><span>, you have killed
                     </span><span id="current-score"></span></div>
                 <div id="last-games" class="flex-center">
@@ -62,8 +64,6 @@
             </div>
             <div> <button id="sfx-btn"><img class="icon" src="assets/images/sfx-off-icon.svg" alt=""></button>
             </div>
-            <div><span>Dead bees: </span><span id="killed-bees">0</span></div>
-            <div><span>Dead wasps: </span><span id="killed-wasps">0</span></div>
         </div>
 
     </div>

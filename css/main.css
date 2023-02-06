@@ -115,6 +115,11 @@ input {
 
 #result {
     font-size: 2rem;
+    text-shadow: 0px 0px 10px red;
+}
+
+.mark {
+    padding-right: 40px;
 }
 
 #viewer {
@@ -138,6 +143,19 @@ input {
     background-position-x: center;
     background-position-y: center;
     z-index: 1000;
+}
+
+#vitals {
+    position:absolute;
+    display: flex;
+    width: 400px;
+    top: 20px;
+    left: 20px;
+    color:#fff;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+    opacity: 0.8;
 }
 
 .bee {
@@ -179,7 +197,7 @@ input {
 }
 
 #killed-wasps,
-#killed-bees, {
+#killed-bees {
     font-size: 1.5rem;
     padding-left: 5px;
 }
@@ -217,6 +235,14 @@ input {
 
 #last-games {
     margin-top: 40px;
+}
+
+#history {
+    background: #cd8a0c97;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 1px 0 black;
+    min-width: 350px;
 }
 
 #history h5 {

@@ -187,9 +187,7 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.savePlayerName = function () {
         this.playerName = document.getElementById('insert-player-name').value
-
         if (this.playerName === "") { this.playerName = "Player" }
-
         let resultPlayerName = document.getElementById('result-player-name')
         console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
@@ -214,7 +212,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         self.saveLastFiveGameScore()
         self.showCurrentScore()
         self.createHistory()
-
     }
 
     this.init = function () {

@@ -1,5 +1,5 @@
 
-let demo = new Game(undefined, undefined, 3, 3, 30)
+let demo = new Game(undefined, undefined, 3, 3, 2)
 
 
 
