@@ -1,4 +1,7 @@
+
 let demo = new Game(undefined, undefined, 10, 100, 3)
+
+
 
 
 // Interface
@@ -31,6 +34,7 @@ startBtn.addEventListener('click', function(){
 replayBtn.addEventListener('click', function(){
   soundOnClick(sfxStatus)
   beginningLayout.style.display = 'block'
+
   playgroundLayout.style.display = 'none'
   finalLayout.style.display = 'none'
   demo.resetKilledAnimals()
