@@ -86,13 +86,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
                     if (self.beeDownCount === 3) {
 
-                        clearInterval(timerId1)
-                        let playground = document.getElementById('playground')
-                        let gameOver = document.getElementById('final')
-                        playground.style.display = 'none'
-                        gameOver.style.display = 'block'
-
-                        seconds.innerText = self.time
                         // to update score
                         let currentScore = document.getElementById('current-score')
                         currentScore.innerText = self.waspDownCount
@@ -108,6 +101,9 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                     self.waspHive.splice(idx, 1)
                     self.waspDownCount++
                     self.waspHiveUpdate()
+                    if (self.waspDownCount === self.waspQty) {
+                        self.gameOver()
+                    }
                 }
             })
         })
@@ -121,8 +117,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 let final = document.getElementById("final")
                 playground.style.display = "none"
                 final.style.display = "block"
-                let seconds = document.getElementById('seconds')
-                seconds.innerText = ""
                 self.gameOver()
 
             } else {
@@ -208,6 +202,13 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
 
     this.gameOver = function () {
+        clearInterval(timerId1)
+        let seconds = document.getElementById('seconds')
+        seconds.innerText = ''
+        let playground = document.getElementById('playground')
+        let gameOver = document.getElementById('final')
+        playground.style.display = 'none'
+        gameOver.style.display = 'block'
         self.saveLastFiveGameScore()
         self.showCurrentScore()
         self.createHistory()
