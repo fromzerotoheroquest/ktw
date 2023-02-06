@@ -22,8 +22,6 @@ body {
 
 #start {
     display: block;
-
-
     background-size: cover;
     background-repeat: no-repeat;
     background-image: radial-gradient(circle, rgba(255, 234, 2, 1), rgba(255, 107, 1, 0.7)),
