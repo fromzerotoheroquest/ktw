@@ -115,6 +115,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
 
     this.recreateBeeLivesIcons = function(){
+        let oldLives = document.querySelectorAll('.life')
+        oldLives.forEach(life => life.remove())
         for(let i = 0; i < this.userLives; i++){
             let icons = document.createElement('div')
             icons.setAttribute('class', 'life')
