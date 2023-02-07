@@ -304,8 +304,7 @@ input {
 @media only screen and (max-device-width : 600px) {
 
     #logo {
-        padding: 150px 0 25px 0;
-        width: 400px;
+        width: 200px;
     }
     #logo + div {
         display: flex;
@@ -313,7 +312,7 @@ input {
         margin-bottom: 50px;
     }
     #start-btn, #replay-btn {
-        font-size: 5rem;
+        font-size: 2.5rem;
     }
 
     #sound-controls {
@@ -326,12 +325,12 @@ input {
     }
 
     #music-btn, #sfx-btn {
-        width: 100px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
     }
 
     #vitals span {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 
     #bee-lives {
@@ -341,22 +340,25 @@ input {
 
     #history {
         margin-top:50px;
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-bottom: 100px;
     }
-/*
-    #delete-history-container {
-        width: 100px;
-        height: 100px;
-    }
-*/
+
     #delete-history {
         height: 50px;
         width: 50px;
     }
 
     #marks li {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
+        font-size: 1rem;
     }
 
+    #final-wrapper {
+        padding: 25px;
+    }
+
+    #last-games {
+        margin-top: 40px;
+    }
 }
