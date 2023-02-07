@@ -20,7 +20,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         let playground = document.getElementById("playground")
         //let layoutDimension = document.querySelector('.layout')
         let cursorOffsetX = (window.innerWidth - 900) / 2
-        console.log('from create viewer', cursorOffsetX)
         let viewer = document.createElement("div");
         viewer.setAttribute('id', 'viewer')
         playground.append(viewer)
@@ -30,25 +29,22 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             let offSet = 18
             viewer.style.left = cursorX - offSet - cursorOffsetX + 'px';
             viewer.style.top = cursorY - offSet + 'px';
-            //console.log(cursorX, cursorY)
+
         });
     }
     this.randomNumber = function (number) {
         return Math.floor(Math.random() * (number + 1))
     }
-    //console.log('this is wasp army:', this.waspHive)
     this.createWaspHive = function () {
         while (this.waspHive.length < this.waspQty) {
             let tempWasp = new Wasp(undefined, this.randomNumber(this.waspSpeed) + 0.5)
             let valid = true;
-            //console.log(tempWasp.coords)
             this.waspHive.forEach(function (element) {
                 if ((Math.abs(tempWasp.coords.x - element.x) < 55) && (Math.abs(tempWasp.coords.y - element.y) < 55)) {
                     valid = false
                 }
             })
             if (valid) this.waspHive.push(tempWasp)
-            //console.log(valid)
         }
     }
     this.createBeeHive = function () {
@@ -56,23 +52,20 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             let tempBee = new Bee(undefined, this.randomNumber(this.beeSpeed) + 0.5)
             let valid = true;
             this.beeHive.forEach(function (element) {
-                //console.log(tempBee.coords)
                 if ((Math.abs(tempBee.coords.x - element.x) < 55) && (Math.abs(tempBee.coords.y - element.y) < 55)) {
                     valid = false
                 }
             })
             if (valid) this.beeHive.push(tempBee)
-            //console.log(valid)
+
         }
     }
     this.beeHiveUpdate = function () {
-        console.log('Bees killed: ', this.beeDownCount)
         let beeCounter = document.getElementById('killed-bees')
         beeCounter.innerText = this.beeDownCount
 
     }
     this.waspHiveUpdate = function () {
-        console.log('wasps killed: ', this.waspDownCount)
         let waspCounter = document.getElementById('killed-wasps')
         waspCounter.innerText = `${this.waspDownCount} / ${this.waspQty}`
            
@@ -84,7 +77,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             self.beeHive.forEach(function (bee, idx) {
                 if ((bee.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < bee.coords.x + 50) &&
                     (bee.coords.y < e.clientY && e.clientY < bee.coords.y + 50)) {
-                    console.log('bee dead')
                     self.beeHive.splice(idx, 1)
                     self.beeDownCount++
                     self.beeHiveUpdate()
@@ -100,7 +92,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
             self.waspHive.forEach(function (wasp, idx) {
                 if ((wasp.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < wasp.coords.x + 50) &&
                     (wasp.coords.y < e.clientY && e.clientY < wasp.coords.y + 50)) {
-                    console.log('wasp dead')
                     self.waspHive.splice(idx, 1)
                     self.waspDownCount++
                     self.waspHiveUpdate()
@@ -140,7 +131,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
                 self.gameOver()
 
             } else {
-                //console.log(gameTime)
                 document.getElementById("seconds").innerText = gameTime
                 gameTime--
             }
@@ -155,19 +145,20 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         }
         if (this.scores.length < 5) {
             this.scores.push(player)
-            console.log('scores', this.scores)
+            console.log('scores minor of 5', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         } else {
-            this.scores.shift()
+            //console.log('before', this.scores)
+            //console.log('after', this.scores)
+            this.scores.pop()
             this.scores.push(player)
-            console.log('scores', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         }
     }
 
     this.loadLastGameScore = function () {
         if (this.savedGame) {
-            console.log('this is saved game', JSON.parse(this.savedGame))
+            console.log('this is saved game from loadlastgamescore', JSON.parse(this.savedGame))
             this.scores = JSON.parse(this.savedGame)
         }
     }
@@ -175,7 +166,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.createHistory = function () {
         let marks = document.getElementById('marks')
         let list = document.querySelectorAll('#marks li')
-        console.log('this is scores localstorage: ',this.scores)
         //delete the previous list
         list.forEach(el => el.remove())
         //order scores
@@ -200,7 +190,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.showCurrentScore = function () {
         let currentScore = document.getElementById('current-score')
-        console.log('showcurrent score', self.waspDownCount)
         currentScore.innerText = `${self.waspDownCount } out of ${self.waspQty} wasps`
     }
 
@@ -208,7 +197,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         this.playerName = document.getElementById('insert-player-name').value
         if (this.playerName === "") { this.playerName = "Player" }
         let resultPlayerName = document.getElementById('result-player-name')
-        console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
     }
 

@@ -42,7 +42,6 @@ replayBtn.addEventListener('click', function(){
 })
 
 inputPlayer.addEventListener('keydown', function (e) {
-  console.log(e.key)
   if(e.key === "Enter"){
     soundOnClick(sfxStatus)
     demo.init()
