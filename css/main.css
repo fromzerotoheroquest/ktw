@@ -194,32 +194,32 @@ input {
     font-size: 1rem;
 }
 
-
-#control-panel {
-    width: 900px;
-    height: 60px;
+#sound-controls {
+    position: absolute;
+    top: 300px;
+    left: 25px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: center;
-    background-color: #190e05;
-    color: #fff;
-    margin:auto;
 }
 
-#control-panel button {
-    border-radius: 30px;
+#music-btn, #sfx-btn {
+    border-radius: 50px;
     padding: 5px;
     border: 0;
     cursor: pointer;
     width: 42px;
+    height: 42px;
+    background-color: #ffffff2e;
 }
-#control-panel button:hover {
+
+#music-btn img, #sfx-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+#music-btn:hover, #sfx-btn:hover {
     background: radial-gradient(circle, #ffec64 5%, #ff9d00 100%);
-}
-
-
-#control-panel span:first-child {
-    font-size: 1rem;
 }
 
 #killed-wasps,
@@ -299,4 +299,64 @@ input {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+@media only screen and (max-device-width : 600px) {
+
+    #logo {
+        padding: 150px 0 25px 0;
+        width: 400px;
+    }
+    #logo + div {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+    #start-btn, #replay-btn {
+        font-size: 5rem;
+    }
+
+    #sound-controls {
+        position: absolute;
+        top: 300px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #music-btn, #sfx-btn {
+        width: 100px;
+        height: 100px;
+    }
+
+    #vitals span {
+        font-size: 2.5rem;
+    }
+
+    #bee-lives {
+        margin-top: 25px;
+        height: 70px;
+    }
+
+    #history {
+        margin-top:50px;
+        font-size: 2rem;
+        margin-bottom: 100px;
+    }
+/*
+    #delete-history-container {
+        width: 100px;
+        height: 100px;
+    }
+*/
+    #delete-history {
+        height: 50px;
+        width: 50px;
+    }
+
+    #marks li {
+        margin-bottom: 20px;
+    }
+
 }

@@ -20,11 +20,15 @@ const Animal = function (type, speed) {
     }
     
     this.die = function () {
-        let cursorOffsetX = (window.innerWidth - 900) / 2
+        let playground = document.getElementById('playground')
+        let playgroundWidth = playground.offsetWidth
+        let cursorOffsetX = (window.innerWidth - playgroundWidth) / 2
         let allAnimals = document.querySelectorAll(`.${this.type}`)
         allAnimals.forEach(animal => animal.addEventListener('click', function (e) {
             //e.target.remove()
-            console.log('e client x', e.clientX)
+            //console.log('e client x', e.clientX)
+            console.log('playground width',playgroundWidth)
+
             
             let posX = parseInt(animal.style.left.slice(0, -2))
             let posY = parseInt(animal.style.top.slice(0, -2))
@@ -40,13 +44,16 @@ const Animal = function (type, speed) {
     }
     
     this.move = function () {
-        if (this.coords.x <= 0 || this.coords.x >= 850) {
+        let playground = document.getElementById('playground')
+        let playgroundWidth = playground.offsetWidth
+        let playgroundHeight = playground.offsetHeight
+        if (this.coords.x <= 0 || this.coords.x >= playgroundWidth - 50) {
             this.directionX *= -1
         }
         this.coords.x += this.speed * this.directionX
         this.animal.style.left = this.coords.x + 'px'
 
-        if (this.coords.y <= 0 || this.coords.y >= 550) {
+        if (this.coords.y <= 0 || this.coords.y >= playgroundHeight - 50) {
             this.directionY *= -1
         }
         this.coords.y += this.speed * this.directionY

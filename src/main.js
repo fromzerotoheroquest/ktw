@@ -1,5 +1,5 @@
 
-let demo = new Game(undefined, undefined, 3, 3, 30)
+let demo = new Game(undefined, undefined, 3, 3, 300)
 
 // Interface
 
@@ -84,3 +84,16 @@ function toFadeIn(id) {
   }, 50)
 }
 
+
+// brutal responsive 
+function responsive () {
+  let layouts = document.querySelectorAll('.layout')
+  layouts.forEach(function (el){
+    el.style.width = window.innerWidth + 'px'
+    el.style.height = window.innerHeight + 'px'
+  })
+}
+
+setInterval(() => {responsive ()},500)
+
+// window.addEventListener('resize', responsive());
