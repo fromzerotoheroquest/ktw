@@ -20,7 +20,7 @@ const Animal = function (type, speed) {
     }
     
     this.die = function () {
-        let playground = document.getElementById('playground')
+        let playground = document.getElementById('container')
         let playgroundWidth = playground.offsetWidth
         let cursorOffsetX = (window.innerWidth - playgroundWidth) / 2
         let allAnimals = document.querySelectorAll(`.${this.type}`)

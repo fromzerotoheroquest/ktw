@@ -33,6 +33,8 @@ replayBtn.addEventListener('click', function () {
   toFadeIn('start')
   playgroundLayout.style.display = 'none'
   toFadeOut('final')
+  // beginningLayout.style.display = 'block'
+
   demo.init()
 })
 
@@ -94,6 +96,10 @@ function responsive () {
   })
 }
 
+
 setInterval(() => {responsive ()},500)
 
 // window.addEventListener('resize', responsive());
+
+
+// responsive ()

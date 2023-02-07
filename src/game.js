@@ -18,9 +18,9 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.createViewer = function () {
         let viewer = document.getElementById("viewer")
-        let playground = document.getElementById('playground')
-        let playgroundWidth = playground.offsetWidth
-        let cursorOffsetX = (window.innerWidth - playgroundWidth) / 2
+        let container = document.getElementById('container')
+        let containerWidth = container.offsetWidth
+        let cursorOffsetX = (window.innerWidth - containerWidth) / 2
         document.addEventListener('mousemove', function (e) {
             let cursorX = e.clientX;
             let cursorY = e.clientY;
@@ -75,9 +75,9 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
            
     }
     this.kill = function () {
-        let playground = document.getElementById('playground')
-        let playgroundWidth = playground.offsetWidth
-        let cursorOffsetX = (window.innerWidth - playgroundWidth) / 2
+        let container = document.getElementById('container')
+        let containerWidth = container.offsetWidth
+        let cursorOffsetX = (window.innerWidth - containerWidth) / 2
         playground.addEventListener('click', function (e) {
             self.beeHive.forEach(function (bee, idx) {
                 if ((bee.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < bee.coords.x + 50) &&
