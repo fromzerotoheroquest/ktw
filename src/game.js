@@ -17,12 +17,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     let timerId1
 
     this.createViewer = function () {
-        let playground = document.getElementById("playground")
-        //let layoutDimension = document.querySelector('.layout')
+        let viewer = document.getElementById("viewer")
         let cursorOffsetX = (window.innerWidth - 900) / 2
-        let viewer = document.createElement("div");
-        viewer.setAttribute('id', 'viewer')
-        playground.append(viewer)
         document.addEventListener('mousemove', function (e) {
             let cursorX = e.clientX;
             let cursorY = e.clientY;
@@ -145,11 +141,8 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
         }
         if (this.scores.length < 5) {
             this.scores.push(player)
-            console.log('scores minor of 5', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         } else {
-            //console.log('before', this.scores)
-            //console.log('after', this.scores)
             this.scores.pop()
             this.scores.push(player)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
@@ -158,7 +151,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.loadLastGameScore = function () {
         if (this.savedGame) {
-            console.log('this is saved game from loadlastgamescore', JSON.parse(this.savedGame))
             this.scores = JSON.parse(this.savedGame)
         }
     }
