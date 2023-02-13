@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="src/auxiliary.js"></script>
     <script defer src="src/sound.js"></script>
     <script defer src="src/animal.js"></script>
     <script defer src="src/bee.js"></script>
     <script defer src="src/wasp.js"></script>
+    <script defer src="src/hive.js"></script>
     <script defer src="src/game.js"></script>
     <script defer src="src/main.js"></script>
-    <title>Document</title>
+    <title>Kill the Wasp</title>
 </head>
+
 <body>
-    <div id="container" class="layout
-    ">
+    <div id="container" class="layout">
         <div id="start" class="layout">
             <div class="flex">
                 <div id="logo">
@@ -31,11 +32,16 @@
             </div>
         </div>
         <div id="playground" class="layout">
+            <div id="viewer"></div>
             <div id="seconds"></div>
             <div id="vitals">
                 <div><span>Dead wasps: </span><span id="killed-wasps">0</span></div>
                 <div id="bee-lives"></div>
                 <div><span>Dead bees: </span><span id="killed-bees">0</span></div>
+            </div>
+            <div id="sound-controls">
+                <div id="music-btn"><img class="icon" src="assets/images/music-off-icon.svg" alt=""></div>
+                <div id="sfx-btn"><img class="icon" src="assets/images/sfx-off-icon.svg" alt=""></div>
             </div>
         </div>
         <div id="final" class="layout">
@@ -52,23 +58,10 @@
                         <ol id="marks"></ol>
                     </div>
                 </div>
-
                 <div class="flex-center"><button id="replay-btn">Replay</button></div>
-
-
-
             </div>
         </div>
-        <div id="control-panel">
-            <div> <button id="music-btn"><img class="icon" src="assets/images/music-off-icon.svg" alt=""></button>
-            </div>
-            <div> <button id="sfx-btn"><img class="icon" src="assets/images/sfx-off-icon.svg" alt=""></button>
-            </div>
-        </div>
-
     </div>
-
-
     <div id="sound-effects">
         <audio id="buzzing" src="assets/sound/buzzing.mp3"></audio>
         <audio id="music" src="assets/sound/music.mp3"></audio>

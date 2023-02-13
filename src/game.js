@@ -1,123 +1,82 @@
 const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, time = 30) {
+    //options
+    this.time = OPTIONS.time
+    this.waspSpeed = OPTIONS.waspSpeed
+    this.beeSpeed = OPTIONS.beeSpeed
+    this.waspQty = OPTIONS.waspQty
+    this.beeQty = OPTIONS.beeQty
+    //others
     let self = this
-    this.time = time
-    this.waspSpeed = waspSpeed
-    this.beeSpeed = beeSpeed
-    this.waspQty = waspQty
-    this.beeQty = beeQty
-    this.waspHive = []
-    this.beeHive = []
     this.beeDownCount = 0
     this.waspDownCount = 0
     this.scores = []
     this.savedGame = localStorage.getItem('myScore')
     this.playerName
     this.userLives = 3
-
-    let timerId1
+    //HTML
+    this.container_HTML = document.getElementById('container')
+    this.playground_HTML = document.getElementById('playground')
+    this.beeCounter_HTML = document.getElementById('killed-bees')
+    this.waspCounter_HTML = document.getElementById('killed-wasps')
+    this.timerId
 
     this.createViewer = function () {
-        let playground = document.getElementById("playground")
-        //let layoutDimension = document.querySelector('.layout')
-        let cursorOffsetX = (window.innerWidth - 900) / 2
-        console.log('from create viewer', cursorOffsetX)
-        let viewer = document.createElement("div");
-        viewer.setAttribute('id', 'viewer')
-        playground.append(viewer)
+        let viewer = document.getElementById('viewer')
+        let cursorOffsetX = (window.innerWidth - this.playground_HTML.offsetWidth) / 2
         document.addEventListener('mousemove', function (e) {
             let cursorX = e.clientX;
             let cursorY = e.clientY;
             let offSet = 18
             viewer.style.left = cursorX - offSet - cursorOffsetX + 'px';
             viewer.style.top = cursorY - offSet + 'px';
-            //console.log(cursorX, cursorY)
         });
     }
-    this.randomNumber = function (number) {
-        return Math.floor(Math.random() * (number + 1))
-    }
-    //console.log('this is wasp army:', this.waspHive)
-    this.createWaspHive = function () {
-        while (this.waspHive.length < this.waspQty) {
-            let tempWasp = new Wasp(undefined, this.randomNumber(this.waspSpeed) + 0.5)
-            let valid = true;
-            //console.log(tempWasp.coords)
-            this.waspHive.forEach(function (element) {
-                if ((Math.abs(tempWasp.coords.x - element.x) < 55) && (Math.abs(tempWasp.coords.y - element.y) < 55)) {
-                    valid = false
-                }
-            })
-            if (valid) this.waspHive.push(tempWasp)
-            //console.log(valid)
-        }
-    }
-    this.createBeeHive = function () {
-        while (this.beeHive.length < this.beeQty) {
-            let tempBee = new Bee(undefined, this.randomNumber(this.beeSpeed) + 0.5)
-            let valid = true;
-            this.beeHive.forEach(function (element) {
-                //console.log(tempBee.coords)
-                if ((Math.abs(tempBee.coords.x - element.x) < 55) && (Math.abs(tempBee.coords.y - element.y) < 55)) {
-                    valid = false
-                }
-            })
-            if (valid) this.beeHive.push(tempBee)
-            //console.log(valid)
-        }
-    }
-    this.beeHiveUpdate = function () {
-        console.log('Bees killed: ', this.beeDownCount)
-        let beeCounter = document.getElementById('killed-bees')
-        beeCounter.innerText = this.beeDownCount
 
+    this.createHives = function () {
+        while (waspHive.colony.length < this.waspQty) {
+            waspHive.addAnimal(new Wasp(undefined, randomNumber(this.waspSpeed) + 0.5))
+        }
+        while (beeHive.colony.length < this.waspQty) {
+            beeHive.addAnimal(new Bee(undefined, randomNumber(this.beeSpeed) + 0.5))
+        }
     }
-    this.waspHiveUpdate = function () {
-        console.log('wasps killed: ', this.waspDownCount)
-        let waspCounter = document.getElementById('killed-wasps')
-        waspCounter.innerText = `${this.waspDownCount} / ${this.waspQty}`
-           
-    }
+
     this.kill = function () {
-        let playground = document.getElementById('playground')
-        let cursorOffsetX = (window.innerWidth - 900) / 2
-        playground.addEventListener('click', function (e) {
-            self.beeHive.forEach(function (bee, idx) {
+        let cursorOffsetX = (window.innerWidth - this.container_HTML.offsetWidth) / 2
+        this.playground_HTML.addEventListener('click', (e) => {
+            beeHive.colony.forEach((bee, idx) => {
                 if ((bee.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < bee.coords.x + 50) &&
                     (bee.coords.y < e.clientY && e.clientY < bee.coords.y + 50)) {
-                    console.log('bee dead')
-                    self.beeHive.splice(idx, 1)
-                    self.beeDownCount++
-                    self.beeHiveUpdate()
-                    self.displayBeeLives()
-                    if (self.beeDownCount === 3) {
+                    beeHive.colony.splice(idx, 1)
+                    beeHive.deathCount++
+                    console.log(this)
+                    this.beeCounter_HTML.innerText = beeHive.deathCount
+                    this.lifeIcons = document.querySelector(".life")
+                    this.lifeIcons.remove()
+                    if (beeHive.deathCount === this.userLives || beeHive.deathCount === this.beeQty ) {
                         // to update score
+                        console.log(beeHive.deathCount)
                         let currentScore = document.getElementById('current-score')
-                        currentScore.innerText = self.waspDownCount 
-                        self.gameOver()
+                        currentScore.innerText = waspHive.deathCount 
+                        this.gameOver()
                     }
                 }
             })
-            self.waspHive.forEach(function (wasp, idx) {
+            waspHive.colony.forEach((wasp, idx) => {
                 if ((wasp.coords.x < (e.clientX - cursorOffsetX) && (e.clientX - cursorOffsetX) < wasp.coords.x + 50) &&
                     (wasp.coords.y < e.clientY && e.clientY < wasp.coords.y + 50)) {
-                    console.log('wasp dead')
-                    self.waspHive.splice(idx, 1)
-                    self.waspDownCount++
-                    self.waspHiveUpdate()
-                    if (self.waspDownCount === self.waspQty) {
-                        self.gameOver()
+                    waspHive.colony.splice(idx, 1)
+                    waspHive.deathCount++
+                    this.waspCounter_HTML.innerText = `${waspHive.deathCount} / ${this.waspQty}`
+                    if (waspHive.deathCount === this.waspQty) {
+                        this.gameOver()
                     }
                 }
             })
         })
     }
 
-    this.displayBeeLives = function() {
-        this.lifeIcons = document.querySelector(".life")
-        this.lifeIcons.remove()
-    }
-
-    this.recreateBeeLivesIcons = function(){
+     this.recreateBeeLivesIcons = function(){
         let oldLives = document.querySelectorAll('.life')
         oldLives.forEach(life => life.remove())
         for(let i = 0; i < this.userLives; i++){
@@ -129,20 +88,13 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     }
 
     this.timer = function () {
-        let gameTime = this.time
-        timerId1 = setInterval(function () {
-            if (gameTime < 0) {
-                clearInterval(timerId1)
-                let playground = document.getElementById("playground")
-                let final = document.getElementById("final")
-                playground.style.display = "none"
-                final.style.display = "block"
-                self.gameOver()
-
+        this.timerId = setInterval(() => {
+            if (this.time < 0) {
+                clearInterval(this.timerId)
+                this.gameOver()
             } else {
-                //console.log(gameTime)
-                document.getElementById("seconds").innerText = gameTime
-                gameTime--
+                document.getElementById("seconds").innerText = this.time
+                this.time--
             }
         }, 1000)
     }
@@ -150,24 +102,21 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.saveLastFiveGameScore = function () {
         let player = {
             name: this.playerName,
-            mark: this.waspDownCount,
+            mark: waspHive.deathCount,
             qty: this.waspQty
         }
         if (this.scores.length < 5) {
             this.scores.push(player)
-            console.log('scores', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         } else {
             this.scores.shift()
             this.scores.push(player)
-            console.log('scores', this.scores)
             localStorage.setItem('myScore', JSON.stringify(this.scores))
         }
     }
 
     this.loadLastGameScore = function () {
         if (this.savedGame) {
-            console.log('this is saved game', JSON.parse(this.savedGame))
             this.scores = JSON.parse(this.savedGame)
         }
     }
@@ -175,7 +124,6 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
     this.createHistory = function () {
         let marks = document.getElementById('marks')
         let list = document.querySelectorAll('#marks li')
-        console.log('this is scores localstorage: ',this.scores)
         //delete the previous list
         list.forEach(el => el.remove())
         //order scores
@@ -200,50 +148,48 @@ const Game = function (waspSpeed = 10, beeSpeed = 3, waspQty = 5, beeQty = 3, ti
 
     this.showCurrentScore = function () {
         let currentScore = document.getElementById('current-score')
-        console.log('showcurrent score', self.waspDownCount)
-        currentScore.innerText = `${self.waspDownCount } out of ${self.waspQty} wasps`
+        currentScore.innerText = `${waspHive.deathCount} out of ${this.waspQty} wasps`
     }
 
     this.savePlayerName = function () {
         this.playerName = document.getElementById('insert-player-name').value
         if (this.playerName === "") { this.playerName = "Player" }
         let resultPlayerName = document.getElementById('result-player-name')
-        console.log(this.playerName)
         resultPlayerName.innerText = this.playerName
     }
 
-    this.resetKilledAnimals = function () {
-        this.waspDownCount = 0
-        this.beeDownCount = 0
-        this.beeHiveUpdate()
-        this.waspHiveUpdate()
-
+    this.reset = function () {
+        //game variables
+        waspHive.deathCount = 0
+        beeHive.deathCount = 0
+        this.resetDom
+        this.beeCounter_HTML = 0
+        this.waspCounter_HTML = 0
+        //HTML
+        let beeColony = document.querySelectorAll('.bee')
+        let waspColony = document.querySelectorAll('.wasp')
+        beeColony.forEach(el => el.remove())
+        waspColony.forEach(el => el.remove())
     }
 
     this.gameOver = function () {
-        clearInterval(timerId1)
+        clearInterval(this.timerId)
         let seconds = document.getElementById('seconds')
         seconds.innerText = ''
-        let playground = document.getElementById('playground')
-        let gameOver = document.getElementById('final')
-        playground.style.display = 'none'
-        gameOver.style.display = 'block'
-        self.saveLastFiveGameScore()
-        self.showCurrentScore()
-        self.createHistory()
+        this.saveLastFiveGameScore()
+        this.showCurrentScore()
+        this.createHistory()
+        this.reset()
+        toFadeOut('playground')
     }
 
     this.init = function () {
+        this.createHives()
         this.recreateBeeLivesIcons()
         this.createViewer()
-        this.createWaspHive()
-        this.createBeeHive()
         this.kill()
-        this.beeHiveUpdate()
-        this.waspHiveUpdate()
         this.savePlayerName()
         this.timer()
         this.loadLastGameScore()
     }
-
 }

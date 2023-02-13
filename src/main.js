@@ -1,55 +1,56 @@
+const OPTIONS = {
+  waspSpeed: 10,
+  beeSpeed: 3,
+  waspQty: 15,
+  beeQty: 40,
+  time: 30
+}
 
-let demo = new Game(undefined, undefined, 3, 3, 15)
+let demo = new Game(OPTIONS)
 
+//HTML elements 
+const html_elems = {
+  startLayout : document.getElementById('start'),
+  playgroundLayout : document.getElementById('playground'),
+  finalLayout : document.getElementById('final'),
+  startBtn : document.getElementById('start-btn'),
+  replayBtn : document.getElementById('replay-btn'),
+  deleteScoreBtn : document.getElementById('delete-history'),
+  inputPlayer : document.getElementById('insert-player-name')
+}
 
-
-
-// Interface
-
-//Buttons
-let startBtn = document.getElementById('start-btn')
-let replayBtn = document.getElementById('replay-btn')
-let deleteScoreBtn = document.getElementById('delete-history')
-let inputPlayer = document.getElementById('insert-player-name')
-
-// Layouts
-let beginningLayout = document.getElementById('start')
-let playgroundLayout = document.getElementById('playground')
-let finalLayout = document.getElementById('final')
-let controlPanel = document.getElementById('control-panel')
-
-deleteScoreBtn.addEventListener('click', function(){
+html_elems.deleteScoreBtn.addEventListener('click', function () {
   demo.deleteHistory()
 })
 
-
-startBtn.addEventListener('click', function(){
+html_elems.startBtn.addEventListener('click', function () {
   soundOnClick(sfxStatus)
   demo.init()
-  beginningLayout.style.display = 'none'
-  //controlPanel.style.display = 'block'
-  playgroundLayout.style.display = 'block'
-  finalLayout.style.display = 'none'
+  toFadeOut('start')
+  html_elems.playgroundLayout.style.display = 'block'
+  html_elems.finalLayout.style.display = 'block'
 })
 
-replayBtn.addEventListener('click', function(){
+html_elems.replayBtn.addEventListener('click', function () {
   soundOnClick(sfxStatus)
-  beginningLayout.style.display = 'block'
-
-  playgroundLayout.style.display = 'none'
-  finalLayout.style.display = 'none'
-  demo.resetKilledAnimals()
+  toFadeIn('start')
+  html_elems.playgroundLayout.style.display = 'none'
+  toFadeOut('final')
+  /*
+  let demo = new Game(OPTIONS)
+  demo.init()
+*/
+  location.reload()
 })
 
-inputPlayer.addEventListener('keydown', function (e) {
-  console.log(e.key)
-  if(e.key === "Enter"){
+html_elems.inputPlayer.addEventListener('keydown', function (e) {
+  if (e.key === "Enter") {
     soundOnClick(sfxStatus)
     demo.init()
-    beginningLayout.style.display = 'none'
+    html_elems.startLayout.style.display = 'none'
     //controlPanel.style.display = 'block'
-    playgroundLayout.style.display = 'block'
-    finalLayout.style.display = 'none'
+    html_elems.playgroundLayout.style.display = 'block'
+    html_elems.finalLayout.style.display = 'none'
   }
 })
 
